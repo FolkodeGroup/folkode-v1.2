@@ -1,0 +1,66 @@
+.custom-slider {
+  position: relative;
+}
+
+.slider-viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  touch-action: pan-y;
+}
+
+.slider-track {
+  display: flex;
+  /* will-change eliminado para evitar advertencias de memoria */
+}
+
+.slide {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #025159;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+.arrow.prev { left: -60px; }
+.arrow.next { right: -60px; }
+.arrow:hover { background: #013f49; }
+
+/* esto te esconde las arrow */
+@media (max-width: 768px) {
+  .arrow { display: none; }
+}
+
+/* Dots */
+.dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+.dots li { list-style: none; }
+.dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(2, 81, 89, 0.5);
+  border: none;
+  cursor: pointer;
+}
+.dots button.active { background: #025159; }
+
+/* que la card ocupe todo el alto disponible */
+.team-card-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
