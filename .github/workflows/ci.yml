@@ -39,6 +39,7 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
       - name: Success message
         run: |
