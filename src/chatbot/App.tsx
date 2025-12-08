@@ -196,7 +196,7 @@ const App: React.FC = () => {
           isConversationMode={isConversationMode}
           locales={locales}
           onToggleTheme={handleToggleTheme}
-          onToggleConversationMode={handleToggleConversationMode}
+
           onExportChat={handleExportChat}
           onEndChat={() => handleEndChat()}
           onOpenAnalytics={() => setIsAnalyticsPanelOpen(true)}
