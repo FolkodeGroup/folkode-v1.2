@@ -46,7 +46,7 @@ const App: React.FC = () => {
     startListening,
     handleViewConversation,
     restartChat,
-    speakLastBotMessage,
+    // speakLastBotMessage, // Eliminado por no uso
     speakAllConversation,
     isReadingAll,
   } = useChatManager({

@@ -1,6 +1,7 @@
 
 
 import { Language, Theme, User } from '../types';
+import Image from 'next/image';
 import { locales } from '../i18n/locales';
 import { FiMail } from 'react-icons/fi';
 
@@ -15,7 +16,7 @@ type AppHeaderProps = {
     isConversationMode: boolean;
     locales: typeof locales;
     onToggleTheme: () => void;
-    onToggleConversationMode: () => void;
+
     onExportChat: () => void;
     onEndChat: () => void;
     onOpenAnalytics: () => void;
@@ -33,7 +34,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
     isConversationMode,
     locales,
     onToggleTheme,
-    onToggleConversationMode,
+
     onExportChat,
     onEndChat,
     onOpenAnalytics,
@@ -43,7 +44,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         <header className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 bg-transparent backdrop-blur-md/40">
             <div className="flex items-center gap-3">
                 <div className="w-10 h-10 mr-2 flex items-center justify-center bg-white/10 dark:bg-black/20 rounded-lg shadow-inner" aria-label="FolKode Logo">
-                    <img src="/folkode-oscuro-no-bg.webp" alt="Folkode logo" />
+                    <Image src="/folkode-oscuro-no-bg.webp" alt="Folkode logo" width={40} height={40} />
                 </div>
                 <div>
                                 <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight tracking-tight drop-shadow-sm">

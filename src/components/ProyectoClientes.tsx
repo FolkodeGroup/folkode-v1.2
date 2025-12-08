@@ -47,13 +47,13 @@ type ClienteCardProps = {
   image: StaticImageData;
   title: string;
   description: string;
-  url: string;
+  // url: string; // Eliminado por no uso
   category: string;
   onClick?: () => void;
   previewImages?: string[];
 };
 
-function ClienteCard({ image, title, description, url, category, onClick, previewImages }: ClienteCardProps) {
+function ClienteCard({ image, title, description, category, onClick, previewImages }: ClienteCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: '-40px' });
   const rotateX = useMotionValue(0);
@@ -94,7 +94,7 @@ function ClienteCard({ image, title, description, url, category, onClick, previe
     rotateX.set(0);
     rotateY.set(0);
   };
-  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleCardClick = () => {
     if (onClick) {
       onClick();
     }

@@ -210,7 +210,7 @@ export const useChatManager = ({ language, user, isConversationMode, onAnalytics
       handleEndChat(details, updatedUser);
     }, 1500);
 
-  }, [user, language, speak, handleEndChat, onAnalyticsUpdate]);
+  }, [user, language, handleEndChat, onAnalyticsUpdate]);
 
   // --- Effects for Initialization and Session Management ---
 
@@ -275,7 +275,7 @@ export const useChatManager = ({ language, user, isConversationMode, onAnalytics
         }
       }
     }, 60000);
-  }, [isListening, language, speak, isConversationMode]);
+  }, [isListening, language, isConversationMode]);
 
   useEffect(() => {
     resetInactivityTimer();
@@ -351,7 +351,7 @@ export const useChatManager = ({ language, user, isConversationMode, onAnalytics
       .join('\n\n');
     try {
       await speakRef.current(conversationText);
-    } catch (e) {
+    } catch {
       // ignorar
     }
     // No desactivar aquí: la lectura queda activa hasta que el usuario la apague
