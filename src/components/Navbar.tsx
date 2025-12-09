@@ -79,43 +79,57 @@ const Navbar: React.FC = () => {
           {/* Parte derecha SIEMPRE verde, menú normal u hamburguesa */}
           <div className="navbar-right bg-secondary-hover flex-1 flex items-center justify-end md:justify-around">
             {/* Menú de navegación normal, oculto en móvil */}
-            <div className="hidden md:flex w-full justify-around items-center">
+            <div className="hidden md:flex w-full h-full items-center">
               {navItems.map((item) => {
                 if (item.type === 'component') {
-                  return <span key={item.id}><Desplegable /></span>;
+                  return (
+                    <>
+                      <div className='nav-item-container' key={item.id}><Desplegable /></div>
+                    </>
+                  )
                 } else if (item.target === 'inicio') {
                   return (
-                    <button
-                      key={item.id}
-                      onClick={handleScrollToTop}
-                      className="text-nav-link cursor-pointer bg-transparent border-none"
-                      style={{
-                        color: 'var(--color-text-inverse)',
-                        transition: 'color 0.2s ease'
-                      }}
-                    >
-                      {item.label}
-                    </button>
+                    <>
+                      <div className='nav-item-container'>
+                        <button
+                          key={item.id}
+                          onClick={handleScrollToTop}
+                          className="text-nav-link cursor-pointer bg-transparent border-none"
+                          style={{
+                            color: 'var(--color-text-inverse)',
+                            transition: 'color 0.2s ease, background .5s ease'
+                          }}
+                        >
+                          <span>{item.label}</span>
+                        </button>
+                      </div>
+                    </>
                   );
                 } else {
                   return (
-                    <ScrollLink
-                      key={item.id}
-                      to={item.target || ''}
-                      spy={true}
-                      smooth={true}
-                      offset={-getScrollOffset()}
-                      duration={800}
-                      activeClass="active"
-                      className="text-nav-link cursor-pointer"
-                      style={{
-                        color: 'var(--color-text-inverse)',
-                        transition: 'color 0.2s ease',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      {item.label}
-                    </ScrollLink>
+                    <>
+                      <div className='nav-item-container'>
+                        <ScrollLink
+                          key={item.id}
+                          to={item.target || ''}
+                          spy={true}
+                          smooth={true}
+                          offset={-getScrollOffset()}
+                          duration={800}
+                          activeClass="active"
+                          className="text-nav-link cursor-pointer"
+                          style={{
+                            color: 'var(--color-text-inverse)',
+                            transition: 'color 0.2s ease, background .5s ease',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          <span>
+                            {item.label}
+                          </span>
+                        </ScrollLink>
+                      </div>
+                    </>
                   );
                 }
               })}

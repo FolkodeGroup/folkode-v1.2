@@ -25,7 +25,7 @@ export default function Desplegable() {
     return (
         <div 
             ref={menuRef} 
-            style={{ position: "relative", display: "inline-block" }}
+            style={{ position: "relative", display: "inline-block", height: "100%", width: "100%"}}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
@@ -33,7 +33,7 @@ export default function Desplegable() {
                 type="button"
                 className="btn-desplegable"
             >
-                Sobre Folkode
+                <span>Sobre Folkode</span>
             </button>
             {isOpen && (
                 <motion.div
