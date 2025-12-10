@@ -1385,13 +1385,12 @@ picture {
     display: block;
     width: 100%;
     padding: 0.5rem;
-    border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    transform: skew(-40deg);
   }
 
   .btn-desplegable-abierto a:hover {
     background-color: rgba(134, 168, 105, 0.2);
-    color: #86A869 !important;
   }
 
   /* Estilo activo para ScrollLink */
@@ -1404,8 +1403,6 @@ picture {
     background-color: var(--color-primary);
     color: var(--color-text-inverse);
     width: 11rem;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     padding: 0.75rem 1.5rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1414,16 +1411,15 @@ picture {
   }
 
   .btn-desplegable-abierto li:hover {
-    background-color: var(--color-primary-hover);
-    border-radius: 8px;
+    background: rgba(134, 168, 105, 0.15);
   }
 
   .btn-desplegable-abierto a:hover {
     color: var(--color-text-inverse);
     text-decoration: solid;
-    padding: 0.05rem;
+    
     border-radius: 4px;
-    margin: 0.16rem;
+    
 }
 
   /* HeroSection - Desktop */
