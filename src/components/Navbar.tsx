@@ -260,39 +260,41 @@ const Navbar: React.FC = () => {
                   );
                 } else if (item.target === 'inicio') {
                   return (
-                    <button
-                      key={item.id}
-                      onClick={() => {
-                        handleScrollToTop();
-                        setMenuOpen(false);
-                      }}
-                      className="text-nav-link text-lg cursor-pointer bg-transparent border-none"
-                      style={{ color: 'var(--color-text-inverse)', fontSize: '1.3rem', margin: '0.5rem 0' }}
-                    >
-                      {item.label}
-                    </button>
+                    <div key={item.id} style={{ width: '100%' }}>
+                      <button
+                        onClick={() => {
+                          handleScrollToTop();
+                          setMenuOpen(false);
+                        }}
+                        className="text-nav-link text-lg cursor-pointer bg-transparent border-none"
+                        style={{ color: 'var(--color-text-inverse)', fontSize: '1.3rem', margin: '0.5rem 0' }}
+                      >
+                        {item.label}
+                      </button>
+                    </div>
                   );
                 } else {
                   return (
-                    <ScrollLink
-                      key={item.id}
-                      to={item.target || ''}
-                      spy={true}
-                      smooth={true}
-                      offset={-getScrollOffset()}
-                      duration={800}
-                      activeClass="active"
-                      className="text-nav-link text-lg cursor-pointer"
-                      style={{
-                        color: 'var(--color-text-inverse)',
-                        textDecoration: 'none',
-                        fontSize: '1.3rem',
-                        margin: '0.5rem 0',
-                      }}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </ScrollLink>
+                    <div key={item.id} style={{ width: '100%' }}>
+                      <ScrollLink
+                        to={item.target || ''}
+                        spy={true}
+                        smooth={true}
+                        offset={-getScrollOffset()}
+                        duration={800}
+                        activeClass="active"
+                        className="text-nav-link text-lg cursor-pointer"
+                        style={{
+                          color: 'var(--color-text-inverse)',
+                          textDecoration: 'none',
+                          fontSize: '1.3rem',
+                          margin: '0.5rem 0',
+                        }}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </ScrollLink>
+                    </div>
                   );
                 }
               })}
