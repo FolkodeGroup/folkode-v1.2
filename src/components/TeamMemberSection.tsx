@@ -177,11 +177,22 @@ const teamMembers: TeamMember[] = [
 
 export default function TeamMemberSection() {
   const [selectedMember, setSelectedMember] = useState<TeamMember>(teamMembers[0]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const topRowMembers = teamMembers.slice(0, 7);
   const bottomRowMembers = teamMembers.slice(7);
 
   const circleSize = 280; // Tamaño del círculo en px
   const circleRadius = circleSize / 2;
+
+  const handleMemberChange = (member: TeamMember) => {
+    if (member.id !== selectedMember.id) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedMember(member);
+        setIsTransitioning(false);
+      }, 600); // Tiempo para que desaparezca la card
+    }
+  };
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4" style={{ 
@@ -200,50 +211,53 @@ export default function TeamMemberSection() {
           {/* Wrapper para círculo y tarjeta unidos */}
           <div className="flex items-center justify-center relative">
             {/* Círculo con imagen a la izquierda */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedMember.id}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3, delay: 0.4, ease: "easeInOut" }}
-                className="relative flex-shrink-0 z-10"
-                style={{
-                  width: `${circleSize}px`,
-                  height: `${circleSize}px`,
-                }}
-              >
-                <div 
-                  className="w-full h-full rounded-full overflow-hidden shadow-2xl relative"
-                  style={{ background: '#025159', transform: 'translateZ(0)' }}
+            <div className="relative flex-shrink-0 z-10"
+              style={{
+                width: `${circleSize}px`,
+                height: `${circleSize}px`,
+              }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedMember.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-full h-full"
                 >
-                  <Image
-                    src={selectedMember.avatar}
-                    alt={selectedMember.name}
-                    fill
-                    className="object-cover"
-                    sizes={`${circleSize}px`}
-                    priority
-                  />
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                  <div 
+                    className="w-full h-full rounded-full overflow-hidden shadow-2xl relative"
+                    style={{ background: '#025159', transform: 'translateZ(0)' }}
+                  >
+                    <Image
+                      src={selectedMember.avatar}
+                      alt={selectedMember.name}
+                      fill
+                      className="object-cover"
+                      sizes={`${circleSize}px`}
+                      priority
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Tarjeta de información a la derecha */}
             <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedMember.id + '-card'}
-                initial={{ width: 0, opacity: 0, x: -50 }}
-                animate={{ width: 'auto', opacity: 1, x: 0 }}
-                exit={{ width: 0, opacity: 0, x: -50 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="relative overflow-hidden"
-                style={{
-                  minHeight: `${circleSize}px`,
-                  marginLeft: `-${circleRadius}px`, // Solapamiento negativo para unir con el círculo
-                  zIndex: 0
-                }}
-              >
+              {!isTransitioning && (
+                <motion.div
+                  key={selectedMember.id + '-card'}
+                  initial={{ width: 0, opacity: 0, x: -30 }}
+                  animate={{ width: 'auto', opacity: 1, x: 0 }}
+                  exit={{ width: 0, opacity: 0, x: -30 }}
+                  transition={{ duration: 0.65, ease: "easeInOut" }}
+                  className="relative overflow-hidden"
+                  style={{
+                    minHeight: `${circleSize}px`,
+                    marginLeft: `-${circleRadius}px`, // Solapamiento negativo para unir con el círculo
+                    zIndex: 0
+                  }}
+                >
                 <div
                   className="h-full flex flex-col justify-center shadow-xl w-[80vw] md:w-[600px]"
                   style={{
@@ -301,6 +315,7 @@ export default function TeamMemberSection() {
                   </div>
                 </div>
               </motion.div>
+              )}
             </AnimatePresence>
           </div>
         </div>
@@ -318,7 +333,7 @@ export default function TeamMemberSection() {
             {topRowMembers.map((member) => (
               <motion.button
                 key={member.id}
-                onClick={() => setSelectedMember(member)}
+                onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                 className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
@@ -350,7 +365,7 @@ export default function TeamMemberSection() {
             {bottomRowMembers.map((member) => (
               <motion.button
                 key={member.id}
-                onClick={() => setSelectedMember(member)}
+                onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                 className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
