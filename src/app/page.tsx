@@ -9,15 +9,14 @@ import TeamMemberSection from "@/components/TeamMemberSection";
 import FactoryCard from "@/components/FactoryCard";
 import ContactateSection from "@/components/sections/ContactateSection";
 import ClientComent from "@/components/ClientComent";
-import CoverParticles from "@/components/cover-particles";
 import ComentariosEquipo from "@/components/ComentariosEquipo";
 import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col gap-6 items-start" id="inicio">
-        <CoverParticles />
-          <HeroSection />
+      {/* <CoverParticles /> eliminado para mejorar el rendimiento */}
+      <HeroSection />
       <div className="container mx-auto px-6 py-24">
         <section id="servicios">
           <Reveal><QueHacemosSection /></Reveal>
