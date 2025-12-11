@@ -184,7 +184,12 @@ export default function TeamMemberSection() {
   const circleRadius = circleSize / 2;
 
   return (
-    <section className="w-full min-h-[700px] flex flex-col items-center justify-center py-16 px-4" style={{ background: 'linear-gradient(180deg, #0d1117 0%, #025159 100%)' }}>
+    <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4" style={{ 
+      backgroundImage: 'url(/fondo-triangulos.png)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
         Nuestro equipo
       </h2>
