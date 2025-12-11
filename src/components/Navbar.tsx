@@ -83,16 +83,12 @@ const Navbar: React.FC = () => {
               {navItems.map((item) => {
                 if (item.type === 'component') {
                   return (
-                    <>
-                      <div className='nav-item-container' key={item.id}><Desplegable /></div>
-                    </>
+                    <div className='nav-item-container' key={item.id}><Desplegable /></div>
                   )
                 } else if (item.target === 'inicio') {
                   return (
-                    <>
-                      <div className='nav-item-container'>
-                        <button
-                          key={item.id}
+                    <div className='nav-item-container' key={item.id}>
+                      <button
                           onClick={handleScrollToTop}
                           className="text-nav-link cursor-pointer bg-transparent border-none"
                           style={{
@@ -102,15 +98,12 @@ const Navbar: React.FC = () => {
                         >
                           <span>{item.label}</span>
                         </button>
-                      </div>
-                    </>
+                    </div>
                   );
                 } else {
                   return (
-                    <>
-                      <div className='nav-item-container'>
-                        <ScrollLink
-                          key={item.id}
+                    <div className='nav-item-container' key={item.id}>
+                      <ScrollLink
                           to={item.target || ''}
                           spy={true}
                           smooth={true}
@@ -128,8 +121,7 @@ const Navbar: React.FC = () => {
                             {item.label}
                           </span>
                         </ScrollLink>
-                      </div>
-                    </>
+                    </div>
                   );
                 }
               })}
