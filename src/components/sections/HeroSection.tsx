@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
-import Button from '@/components/Button';
 import Link from 'next/link';
 import heroImage from '@/assets/images/heroo_image.webp';
 import Logo from '@/assets/images/Folkode_Logo_Bold_Black_PNG.webp';
@@ -24,6 +23,15 @@ export default function HeroSection() {
 
     return () => observer.disconnect()
   }, [])
+
+  // Scroll handler: intenta ir a '#sobre-nosotros', si no existe, usa el siguiente hermano
+  const scrollToNext = () => {
+    let target = document.querySelector('#sobre-nosotros') as HTMLElement | null
+    if (!target && ref.current) {
+      target = ref.current.nextElementSibling as HTMLElement | null
+    }
+    if (target) target.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <section
@@ -129,8 +137,37 @@ export default function HeroSection() {
           >
             Desarrollo de software
           </motion.p>
+
+          {/* Botón 'Descubrir' movido abajo del hero (ver más abajo) */}
+
         </div>
       </motion.div>
+      {/* Botón "Descubrir" debajo del cartel (centrado, con scroll suave) */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.7 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] flex flex-col items-center"
+      >
+        <button
+          onClick={scrollToNext}
+          aria-label="Descubrir siguiente sección"
+          className="text-white text-sm md:text-base opacity-95 hover:opacity-100 transition cursor-pointer"
+          style={{ letterSpacing: '0.5px', fontWeight: 600 }}
+        >
+          Descubrir
+        </button>
+
+        {/* Flecha animada */}
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="mt-1 text-white text-lg"
+        >
+          ▼
+        </motion.div>
+      </motion.div>
+
     </section>
   )
 }
