@@ -1298,7 +1298,7 @@ picture {
     color: #86A869;
     background-color: rgba(134, 168, 105, 0.1);
   }
-  
+
 
   /* botones del navbar */
   .navbar-right .nav-item-container{
@@ -1318,7 +1318,7 @@ picture {
     border-radius: 0;
     transition: background .5s;
   }
-  
+
   .navbar-right div > button:hover{
     background: rgba(134, 168, 105, 0.15);
   }
@@ -1326,7 +1326,7 @@ picture {
     position: absolute;
     transform: skew(-40deg);
   }
-  
+
   .navbar-right div a.text-nav-link{
     border-radius: 0;
     display: flex;
@@ -1341,7 +1341,7 @@ picture {
   }
 
   .nav-item-container a:hover{
-    
+
     background: rgba(134, 168, 105, 0.15);
   }
 
@@ -1350,7 +1350,7 @@ picture {
     height: 100%;
     transform: skew(40deg);
   }
-  
+
 
   /* Estado activo para ScrollLink del navbar */
   .text-nav-link.active {
@@ -1417,9 +1417,9 @@ picture {
   .btn-desplegable-abierto a:hover {
     color: var(--color-text-inverse);
     text-decoration: solid;
-    
+
     border-radius: 4px;
-    
+
 }
 
   /* HeroSection - Desktop */
@@ -1431,7 +1431,7 @@ picture {
   }
 
   .hero-title{
-    font-size: 48px;
+    font-size: 72px;
     font-weight: bold;
     margin-bottom: -10px;
     z-index: 2;
@@ -1439,7 +1439,7 @@ picture {
   }
 
   .hero-text{
-    font-size: large;
+    font-size: 32px;
     margin-top: 3px;
     color: #e5e7eb;
     z-index: 2;
@@ -2514,7 +2514,7 @@ picture {
     min-height: 420px;
     width: 100%;
   }
-  
+
   .proyectos-seccion {
     padding: 2rem 0;
   }
