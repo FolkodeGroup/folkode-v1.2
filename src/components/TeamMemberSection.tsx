@@ -203,10 +203,10 @@ export default function TeamMemberSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedMember.id}
-                initial={{ scale: 0, opacity: 0 }}
+                initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: "backOut" }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3, delay: 0.4, ease: "easeInOut" }}
                 className="relative flex-shrink-0 z-10"
                 style={{
                   width: `${circleSize}px`,
@@ -233,10 +233,10 @@ export default function TeamMemberSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedMember.id + '-card'}
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 'auto', opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                initial={{ width: 0, opacity: 0, x: -50 }}
+                animate={{ width: 'auto', opacity: 1, x: 0 }}
+                exit={{ width: 0, opacity: 0, x: -50 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="relative overflow-hidden"
                 style={{
                   minHeight: `${circleSize}px`,
