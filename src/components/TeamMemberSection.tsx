@@ -314,6 +314,7 @@ export default function TeamMemberSection() {
               <motion.button
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
+                style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                 className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
@@ -344,6 +345,7 @@ export default function TeamMemberSection() {
               <motion.button
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
+                style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                 className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
