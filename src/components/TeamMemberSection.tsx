@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFolder } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface TeamMember {
@@ -209,7 +209,7 @@ export default function TeamMemberSection() {
                 }}
               >
                 <div 
-                  className="w-full h-full rounded-full overflow-hidden border-4 border-[#86A869] shadow-2xl"
+                  className="w-full h-full rounded-full overflow-hidden shadow-2xl"
                   style={{ background: '#025159' }}
                 >
                   <Image
@@ -235,27 +235,27 @@ export default function TeamMemberSection() {
                 className="relative overflow-hidden"
                 style={{
                   minHeight: `${circleSize}px`,
-                  maxWidth: '500px',
+                  maxWidth: '600px',
                   marginLeft: `-${circleRadius}px`, // Solapamiento negativo para unir con el círculo
+                  zIndex: 0
                 }}
               >
                 <div
-                  className="h-full flex flex-col justify-center shadow-2xl"
+                  className="h-full flex flex-col justify-center shadow-xl"
                   style={{
-                    background: 'linear-gradient(90deg, #025159 0%, #04746A 100%)',
-                    borderRadius: `${circleRadius}px ${circleRadius}px ${circleRadius}px ${circleRadius}px`,
-                    border: '2px solid #86A869',
+                    background: '#0B4F50', // Color sólido similar a la imagen 1
+                    borderRadius: '0 20px 20px 0', // Bordes redondeados solo a la derecha
                     minHeight: `${circleSize}px`,
-                    paddingLeft: `${circleRadius + 32}px`, // Padding izquierdo para compensar el círculo
-                    paddingRight: '32px',
+                    paddingLeft: `${circleRadius + 40}px`, // Padding izquierdo para compensar el círculo
+                    paddingRight: '40px',
                     paddingTop: '32px',
                     paddingBottom: '32px',
                   }}
                 >
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">
                     {selectedMember.name}
                   </h3>
-                  <p className="text-lg md:text-xl text-[#86A869] font-bold mb-4 uppercase tracking-wide">
+                  <p className="text-lg md:text-xl text-gray-200 font-normal mb-4">
                     {selectedMember.role}
                   </p>
                   <p className="text-white text-base mb-6 leading-relaxed">
@@ -269,7 +269,7 @@ export default function TeamMemberSection() {
                         href={selectedMember.links.github} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-white hover:text-[#86A869] transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                       >
                         <FaGithub size={28} />
                       </a>
@@ -279,7 +279,7 @@ export default function TeamMemberSection() {
                         href={selectedMember.links.linkedin} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-white hover:text-[#86A869] transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                       >
                         <FaLinkedin size={28} />
                       </a>
@@ -289,9 +289,9 @@ export default function TeamMemberSection() {
                         href={selectedMember.links.portfolio} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-white hover:text-[#86A869] transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                       >
-                        <FaGlobe size={28} />
+                        <FaFolder size={28} />
                       </a>
                     )}
                   </div>
