@@ -209,8 +209,8 @@ export default function TeamMemberSection() {
                 }}
               >
                 <div 
-                  className="w-full h-full rounded-full overflow-hidden shadow-2xl"
-                  style={{ background: '#025159' }}
+                  className="w-full h-full rounded-full overflow-hidden shadow-2xl relative"
+                  style={{ background: '#025159', transform: 'translateZ(0)' }}
                 >
                   <Image
                     src={selectedMember.avatar}
@@ -314,7 +314,7 @@ export default function TeamMemberSection() {
               <motion.button
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
-                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 ${
+                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
@@ -344,7 +344,7 @@ export default function TeamMemberSection() {
               <motion.button
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
-                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 ${
+                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
