@@ -194,7 +194,7 @@ export default function TeamMemberSection() {
         Nuestro equipo
       </h2>
 
-      <div className="flex flex-col items-center w-full max-w-6xl mb-12">
+      <div className="flex flex-col items-center w-full max-w-6xl mb-24">
         {/* Contenedor principal con círculo a la izquierda y tarjeta a la derecha */}
         <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-12">
           {/* Wrapper para círculo y tarjeta unidos */}
@@ -306,11 +306,11 @@ export default function TeamMemberSection() {
         </div>
 
         {/* Grid de miembros en dos filas */}
-        <div className="flex flex-col gap-4 items-center w-full">
+        <div className="flex flex-col gap-8 items-center w-full mt-8">
           {/* Fila superior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 backdrop-blur-sm rounded-[20px] px-8 py-4 shadow-xl"
-            style={{ background: 'linear-gradient(90deg, #025159 0%, #04746A 100%)' }}
+            className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
+            style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, #025760 40%, #04AEB7 100%)' }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -320,7 +320,7 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
@@ -333,7 +333,7 @@ export default function TeamMemberSection() {
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="80px"
+                  sizes="112px"
                 />
               </motion.button>
             ))}
@@ -341,8 +341,8 @@ export default function TeamMemberSection() {
 
           {/* Fila inferior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 backdrop-blur-sm rounded-[20px] px-8 py-4 shadow-xl"
-            style={{ background: 'linear-gradient(90deg, #025159 0%, #04746A 100%)' }}
+            className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
+            style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, #025760 40%, #04AEB7 100%)' }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -352,7 +352,7 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => setSelectedMember(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
@@ -365,7 +365,7 @@ export default function TeamMemberSection() {
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="80px"
+                  sizes="112px"
                 />
               </motion.button>
             ))}
