@@ -206,7 +206,7 @@ export default function TeamMemberSection() {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "backOut" }}
                 className="relative flex-shrink-0 z-10"
                 style={{
                   width: `${circleSize}px`,
@@ -236,17 +236,16 @@ export default function TeamMemberSection() {
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: 'auto', opacity: 1 }}
                 exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
                 className="relative overflow-hidden"
                 style={{
                   minHeight: `${circleSize}px`,
-                  maxWidth: '600px',
                   marginLeft: `-${circleRadius}px`, // Solapamiento negativo para unir con el círculo
                   zIndex: 0
                 }}
               >
                 <div
-                  className="h-full flex flex-col justify-center shadow-xl"
+                  className="h-full flex flex-col justify-center shadow-xl w-[80vw] md:w-[600px]"
                   style={{
                     background: '#0B4F50', // Color sólido similar a la imagen 1
                     borderRadius: '0 20px 20px 0', // Bordes redondeados solo a la derecha
@@ -310,7 +309,8 @@ export default function TeamMemberSection() {
         <div className="flex flex-col gap-4 items-center w-full">
           {/* Fila superior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 bg-[#04746A]/50 backdrop-blur-sm rounded-2xl px-6 py-4"
+            className="flex flex-wrap justify-center gap-4 backdrop-blur-sm rounded-[20px] px-8 py-4 shadow-xl"
+            style={{ background: 'linear-gradient(90deg, #025159 0%, #04746A 100%)' }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -341,7 +341,8 @@ export default function TeamMemberSection() {
 
           {/* Fila inferior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 bg-[#04746A]/50 backdrop-blur-sm rounded-2xl px-6 py-4"
+            className="flex flex-wrap justify-center gap-4 backdrop-blur-sm rounded-[20px] px-8 py-4 shadow-xl"
+            style={{ background: 'linear-gradient(90deg, #025159 0%, #04746A 100%)' }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
