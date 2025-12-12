@@ -1,7 +1,7 @@
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import Tecnologias from "@/components/Tecnologias";
-import QueHacemosSection from "@/components/QueHacemosSection";
+//import QueHacemosSection from "@/components/QueHacemosSection";
 import ProyClientes from "@/components/ProyectoClientes";
 import IconosTecnologias from "@/components/IconosTecnologias";
 import Unirte from "@/components/Unirte";
@@ -11,6 +11,7 @@ import ContactateSection from "@/components/sections/ContactateSection";
 import ClientComent from "@/components/ClientComent";
 import ComentariosEquipo from "@/components/ComentariosEquipo";
 import Reveal from "@/components/Reveal";
+import ServiciosSection from "@/components/sections/ServiciosSection";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
       <HeroSection />
       <div className="container mx-auto px-6 py-24">
         <section id="servicios">
-          <Reveal><QueHacemosSection /></Reveal>
+          <Reveal><ServiciosSection /></Reveal>
         </section>
         <section id="sobre-folkode">
           <Reveal><AboutSection /></Reveal>
