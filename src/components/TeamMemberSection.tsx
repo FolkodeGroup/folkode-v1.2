@@ -195,17 +195,28 @@ export default function TeamMemberSection() {
   };
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4" style={{ 
+    <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4 relative overflow-hidden" style={{ 
       backgroundImage: 'url(/fondo-triangulos.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }}>
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+      {/* Triángulo invertido verde decorativo superior */}
+      <div 
+        className="absolute top-0 left-0 w-full pointer-events-none"
+        style={{
+          height: '100px',
+          background: '#56743C',
+          clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+          zIndex: 1
+        }}
+      />
+      
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white relative z-10">
         Nuestro equipo
       </h2>
 
-      <div className="flex flex-col items-center w-full max-w-6xl mb-24">
+      <div className="flex flex-col items-center w-full max-w-6xl mb-24 relative z-10">
         {/* Contenedor principal con círculo a la izquierda y tarjeta a la derecha */}
         <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-12">
           {/* Wrapper para círculo y tarjeta unidos */}
