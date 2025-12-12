@@ -368,13 +368,13 @@ export default function TeamMemberSection() {
           </motion.div>
 
           {/* Fila inferior */}
-          <motion.div 
-            className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
-            style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, #025760 40%, #04AEB7 100%)' }}
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+            <motion.div 
+              className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
+              style={{ background: 'linear-gradient(90deg, #04AEBF 0%, #025760 50%, #000000 100%)' }}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
             {bottomRowMembers.map((member) => (
               <motion.button
                 key={member.id}
