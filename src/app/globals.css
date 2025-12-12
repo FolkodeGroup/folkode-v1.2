@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@400;600;700&display=swap');
 @import 'tailwindcss';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+/* Efecto para las miniaturas de miembros del equipo */
+.team-thumb {
+  cursor: pointer;
+  filter: grayscale(1);
+  transition: filter 0.3s, box-shadow 0.3s;
+}
+.team-thumb:hover, .team-thumb:focus {
+  filter: grayscale(0);
+}
 
 html, body {
   /* overflow-x: hidden !important; */
@@ -2367,7 +2376,7 @@ picture {
 .proyecto-img-wrapper {
   height: 200px;
   width: 100%;
-  position: relative;
+ 
   overflow: hidden;
 }
 
