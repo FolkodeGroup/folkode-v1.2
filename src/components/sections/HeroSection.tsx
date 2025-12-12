@@ -116,10 +116,11 @@ export default function HeroSection() {
               display: 'flex',
               justifyContent: 'center',
               color: 'white',
+              fontWeight: 400,
             }}
           >
             Fol
-            <span style={{ color: '#56743c', fontWeight: 400 }}>kode</span>
+            <span style={{ color: '#56743c', fontWeight: 600 }}>kode</span>
           </motion.h1>
 
           {/* Subtítulo */}
