@@ -211,12 +211,14 @@ export default function TeamMemberSection() {
           zIndex: 1
         }}
       />
-      
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white relative z-10">
-        Nuestro equipo
-      </h2>
+      {/* Título más arriba */}
+      <div className="w-full flex flex-col items-center" style={{ position: 'absolute', top: '30px', left: 0, zIndex: 10 }}>
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
+          Nuestro equipo
+        </h2>
+      </div>
 
-      <div className="flex flex-col items-center w-full max-w-6xl mb-24 relative z-10">
+      <div className="flex flex-col items-center w-full max-w-6xl mb-24 relative z-10" style={{marginTop: '80px'}}>
         {/* Contenedor principal con círculo a la izquierda y tarjeta a la derecha */}
         <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-12">
           {/* Wrapper para círculo y tarjeta unidos */}
