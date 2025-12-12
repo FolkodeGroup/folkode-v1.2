@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+//import Link from 'next/link';
 import heroImage from '@/assets/images/heroo_image.webp';
 import Logo from '@/assets/images/Folkode_Logo_Bold_Black_PNG.webp';
 
