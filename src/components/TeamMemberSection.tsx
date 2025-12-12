@@ -90,18 +90,6 @@ const teamMembers: TeamMember[] = [
     },
   },
   {
-    id: "member-7",
-    avatar: "/cuqui.webp",
-    name: "Lucas Echavarria",
-    role: "BACKEND DEVELOPER",
-    description: "El mejor código no es el que funciona, sino el que otros pueden entender y mantener.",
-    links: {
-      github: 'https://github.com/Lucasechavarria',
-      linkedin: 'https://linkedin.com/in/lucas-echavarria',
-      portfolio: '#',
-    },
-  },
-  {
     id: "member-8",
     avatar: "/fede.webp",
     name: "Fede Paal",
@@ -170,6 +158,18 @@ const teamMembers: TeamMember[] = [
     links: {
       github: 'https://github.com/',
       linkedin: '#',
+      portfolio: '#',
+    },
+  },
+  {
+    id: "member-7",
+    avatar: "/cuqui.webp",
+    name: "Lucas Echavarria",
+    role: "BACKEND DEVELOPER",
+    description: "El mejor código no es el que funciona, sino el que otros pueden entender y mantener.",
+    links: {
+      github: 'https://github.com/Lucasechavarria',
+      linkedin: 'https://linkedin.com/in/lucas-echavarria',
       portfolio: '#',
     },
   },
@@ -337,8 +337,15 @@ export default function TeamMemberSection() {
         <div className="flex flex-col gap-8 items-center w-full mt-8">
           {/* Fila superior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
-            style={{ background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, #025760 40%, #04AEB7 100%)' }}
+            className="backdrop-blur-sm flex flex-wrap justify-center gap-9 rounded-[40px] py-6 shadow-xl w-full"
+            style={{ 
+              background: 'linear-gradient(90deg, #04AEBF -100%, #025760 50%, #000000 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 23%, black 100%)',
+              width: '100%',
+              paddingLeft: 0,
+              paddingRight: 0
+            }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -368,13 +375,20 @@ export default function TeamMemberSection() {
           </motion.div>
 
           {/* Fila inferior */}
-            <motion.div 
-              className="flex flex-wrap justify-center gap-8 backdrop-blur-sm rounded-[40px] px-16 py-6 shadow-xl"
-              style={{ background: 'linear-gradient(90deg, #04AEBF 0%, #025760 50%, #000000 100%)' }}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
+          <motion.div 
+            className="flex flex-wrap justify-center gap-8 rounded-[40px] py-6 shadow-md-xl w-full"
+            style={{ 
+              background: 'linear-gradient(90deg, #04AEBF -100%, #025760 00%, #000000 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 20%, black 100%)',
+              maskImage: 'linear-gradient(to left, transparent 0%, black 23%, black 100%)',
+              width: '100%',
+              paddingLeft: 0,
+              paddingRight: 0
+            }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             {bottomRowMembers.map((member) => (
               <motion.button
                 key={member.id}
