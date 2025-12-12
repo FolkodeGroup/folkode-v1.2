@@ -348,10 +348,10 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`team-thumb relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
-                    : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
+                    : 'border-[#025159] hover:border-[#86A869]/50 hover:scale-105'
                 }`}
                 whileHover={{ scale: selectedMember.id === member.id ? 1.1 : 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -380,10 +380,10 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`team-thumb relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
-                    : 'border-[#025159] grayscale hover:grayscale-0 hover:border-[#86A869]/50 hover:scale-105'
+                    : 'border-[#025159] hover:border-[#86A869]/50 hover:scale-105'
                 }`}
                 whileHover={{ scale: selectedMember.id === member.id ? 1.1 : 1.05 }}
                 whileTap={{ scale: 0.95 }}
