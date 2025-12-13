@@ -6,7 +6,7 @@ import { Handshake, Star, Lightbulb, ChevronsLeft, ChevronsRight } from "lucide-
 export default function AboutSection() {
 
   return (
-    <section id="sobre-nosotros" className="aboutBleed">
+    <section id="sobre-nosotros" className="w-full">
       <div className="aboutWrap">
         {/* Header  */}
         <div className="
