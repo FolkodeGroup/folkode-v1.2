@@ -2576,48 +2576,11 @@ picture {
 
 .aboutWrap{ width: 100%; }
 
-.aboutHeader{
-  position: relative;
-  padding: 1.45rem 1rem;
-  text-align: center;
-  overflow: hidden;
-
-  background: linear-gradient(
-    135deg,
-    #01454F 0%,
-    #025159 60%,
-    #86A869 100%
-  );
-}
-
-
-/* Imagen difuminada atrás */
-.aboutHeader::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image: url("/images/equipo-folkode.jpg");
-  background-size: cover;
-  background-position: center;
-  filter: blur(12px);
-  transform: scale(1.12);
-  opacity: 0.75;
-}
-
-/* Sombra oscura arriba del blur */
-.aboutHeader::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(13,17,23,0.50);
-}
-
 /* Placa oscura del título */
 .aboutHeaderTitle{
   position: relative;
   z-index: 2;
   color: #ffffff;
-  font-size: 2.25rem;
   font-weight: 700;
 
   /* estas 4 líneas quitan el marco oscuro */
@@ -2627,24 +2590,33 @@ picture {
   padding: 0 !important;
 }
 
-.aboutHeaderArrow{
-  color: #c8e0a1;
-  font-weight: 900;
-  margin: 0 0.45rem;
+/* iconos de flechas de la derecha, primer hijo y segundo hijo */
+.chevrons-icon:first-child path:last-child {
+  stroke: #56743C;
 }
-
+.chevrons-icon:first-child path:first-child {
+  scale: .8;
+  transform-origin: center;
+}
+/* iconos de flechas de la izquierda, primer hijo y segundo hijo */
+.chevrons-icon:last-child path:first-child {
+  stroke: #56743C;
+}
+.chevrons-icon:last-child path:last-child {
+  scale: .8;
+  transform-origin: center;
+}
 
 /* Card */
 .aboutCardFull{
   width: 100%;
-  background: #0d1117;
+  background: #1E1E1E;
   overflow: hidden;
 }
 
 /* Zona oscura */
 .aboutTopFull{
-  background: #0d1117;
-  padding: 2.6rem 4vw 4.6rem; /* MÁS aire abajo */
+  background: inherit;
 }
 
 
@@ -2676,30 +2648,6 @@ picture {
   --about-olive:  #556b3a;     /* verde oliva (triángulo de adelante) */
 }
 
-/* arreglar */
-.aboutTriBackLeft{
-  z-index: 1;
-  left: -92px;
-  top: 60px;
-  border-top: 150px solid transparent;
-  border-bottom: 150px solid transparent;
-  border-right: 235px solid var(--about-teal-1);
-  opacity: 0.95;
-}
-
-
-/* arreglar */
-.aboutTriBackBottom{
-  z-index: 1;
-  left: 72px;
-  bottom: -72px;
-  border-left: 140px solid transparent;
-  border-right: 140px solid transparent;
-  border-top: 240px solid var(--about-teal-2);
-  opacity: 0.95;
-}
-
-
 /* Imagen + hover */
 .aboutImgHover{
   position: relative;
@@ -2721,17 +2669,6 @@ picture {
 /* Hover sutil (solo al cursor) */
 .aboutImgHover:hover .aboutImg{
   transform: scale(1.05);
-}
-
-/* Triángulo adelante:  arreglar */
-.aboutTriFrontCorner{
-  z-index: 4;
-  right: -42px;   
-  top: 18px;      
-  border-left: 110px solid transparent;
-  border-right: 0px solid transparent;
-  border-bottom: 190px solid var(--about-olive);
-  opacity: 0.98;
 }
 
 
@@ -2762,7 +2699,7 @@ picture {
 
 
 .aboutIconsFull{
-  max-width: 1300px;
+  max-width: 1000px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2796,7 +2733,7 @@ picture {
   margin: 0;
   color: #fff;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
 }
 
 .aboutIconItem p{
