@@ -311,6 +311,11 @@ body {
   font-family: 'Inter', 'Montserrat', 'Roboto', sans-serif;
   color: var(--color-text-primary);
   background: rgba(13,17,23,0.85);
+  background-image: url("/fondo-triangulos.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 
