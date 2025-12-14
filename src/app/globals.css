@@ -311,6 +311,11 @@ body {
   font-family: 'Inter', 'Montserrat', 'Roboto', sans-serif;
   color: var(--color-text-primary);
   background: rgba(13,17,23,0.85);
+  background-image: url("/fondo-triangulos.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 
@@ -2563,17 +2568,6 @@ picture {
 /* ===========================
    ABOUT - sobre nosotros
    =========================== */
-
-/* Full-bleed (se sale del container) */
-.aboutBleed{
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-}
-
 .aboutWrap{ width: 100%; }
 
 /* Placa oscura del título */
@@ -2692,7 +2686,7 @@ picture {
 .aboutBottomFull{
   background: #56743C; 
   padding: 4.6rem 4vw 2.4rem;
-  clip-path: polygon(0 34%, 50% 0, 100% 34%, 100% 100%, 0 100%);
+  clip-path: polygon(0 34%, 50% 0, 100% 34%, 100% 101%, 0 101%);
 }
 
 

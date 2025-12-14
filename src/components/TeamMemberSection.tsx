@@ -195,12 +195,7 @@ export default function TeamMemberSection() {
   };
 
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4 relative overflow-hidden" style={{ 
-      backgroundImage: 'url(/fondo-triangulos.png)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }}>
+    <section className="w-full min-h-screen flex flex-col items-center justify-center py-16 px-4 relative overflow-hidden">
       {/* Triángulo invertido verde decorativo superior */}
       <div 
         className="absolute top-0 left-0 w-full pointer-events-none"
