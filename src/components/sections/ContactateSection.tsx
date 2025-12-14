@@ -9,7 +9,8 @@ export default function ContactateSection() {
       id="contacto"
       className="w-full flex flex-col justify-center items-center relative overflow-hidden rounded-xl"
       style={{
-        background: "linear-gradient(135deg, #01454F 60%, #0a2327 100%)",
+        //background: "linear-gradient(135deg, #01454F 60%, #0a2327 100%)",
+        border: "1px solid #01454F",
         minHeight: "650px",
       }}
     >
@@ -24,14 +25,20 @@ export default function ContactateSection() {
           {/* ...más círculos decorativos... */}
         </svg>
       </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-center text-white z-10 drop-shadow-lg tracking-tight">
-        Contáctanos
-      </h2>
-      <div className="w-full max-w-6xl flex flex-col md:flex-row items-start justify-center gap-8 px-6 md:px-12 z-10">
-        <div className="flex-1 flex justify-center">
+      
+      <div className="w-full max-w-7xl flex md:flex-row items-start justify-center gap-8 px-6 md:px-0 z-10">
+        <div className="flex-1 flex flex-col justify-center">
+          <h4 className="text-xl">Tenés alguna idea que quieras hacer realidad?</h4>
+          <h2 className="text-3xl sm:text-4xl md:text-8xl font-bold text-white z-10 drop-shadow-lg tracking-tight">
+            Contáctanos
+          </h2>
           <ContactDatos />
         </div>
-        <div className="flex-1 flex justify-center">
+
+        <hr className="h-[-webkit-fill-available!important] w-[1px] bg-white"/>
+        
+        <div className="flex-1 flex flex-col justify-center items-center">
+          <h4 className="text-5xl ">Trabajemos juntos</h4>
           <ContactFormSection />
         </div>
       </div>

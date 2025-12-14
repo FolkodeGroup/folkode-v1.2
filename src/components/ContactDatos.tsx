@@ -1,67 +1,69 @@
 import React from 'react';
 import { FaEnvelope, FaFacebook, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from 'react-icons/fa6';
+import { ChevronRight } from 'lucide-react'
 
 export default function ContactDatos() {
   return (
 
     <section>
-      <div className="w-full max-w-md dark rounded-xl p-8 flex flex-col h-full contactos aling-items-c">
-        <h3 style={{fontWeight: '400', fontFamily: 'Roboto, sans-serif', fontStyle: 'italic' }} className="text-4xl md:text-sm lg:text-base">
-          Contactate<br />con nuestros<br />profesionales
-        </h3>
-        <div className="flex flex-col gap-4 mt-2 contactate mt-8">
-          <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            <FaEnvelope className="text-lg md:text-xl lg:text-2xl text-primary" />
+      <div className="w-full max-w-md dark rounded-xl flex flex-col h-full contactos aling-items-c">
+        <div className="flex flex-wrap gap-4 mt-2 contactate mt-8 w-100">
+          <div className="flex w-full items-center gap-3 text-xs md:text-sm lg:text-base bg-[#025159] px-6 py-4 rounded-xl">
+            <FaEnvelope title="Gmail" className="text-lg md:text-xl lg:text-2xl text-primary" />
             <a
               href="mailto:contactofolkode@gmail.com"
-              className="truncate font-medium hover:underline"
+              className="flex w-full align-center truncate font-medium hover:underline"
             >
               contactofolkode@gmail.com
+              <ChevronRight className='ml-auto'/>
             </a>
+            
           </div>
-          <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            <FaWhatsapp className="text-lg md:text-xl lg:text-2xl text-green-600" />
+          <div className="flex w-full items-center gap-3 text-xs md:text-sm lg:text-base bg-[#025159] px-6 py-4 rounded-xl">
+            <FaWhatsapp title="Whatsapp" className="text-lg md:text-xl lg:text-2xl text-white" />
             <a
               href="https://wa.me/541131078008"
               target="_blank"
               rel="noopener noreferrer"
-              className="truncate font-medium hover:underline"
+              className="flex w-full align-center truncate font-medium hover:underline"
             >
               WhatsApp
+              <ChevronRight className='ml-auto'/>
             </a>
+            
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            <FaFacebook className="text-lg md:text-xl lg:text-2xl text-blue-600" />
+            
             <a
               href="https://www.facebook.com/folkode"
               target="_blank"
               rel="noopener noreferrer"
-              className="truncate font-medium hover:underline"
+              className="truncate font-medium hover:underline bg-[#025159!important] p-4 rounded-full"
             >
-              Facebook
+              <FaFacebook title="Facebook" className="text-lg md:text-xl lg:text-2xl text-white" />
             </a>
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            <FaInstagram className="text-lg md:text-xl lg:text-2xl text-pink-500" />
+            
             <a
               href="https://www.instagram.com/fol.kode"
               target="_blank"
               rel="noopener noreferrer"
-              className="truncate font-medium hover:underline"
+              className="truncate font-medium hover:underline bg-[#025159!important] p-4 rounded-full"
             >
-              Instagram
+              <FaInstagram title="Instagram" className="text-lg md:text-xl lg:text-2xl text-white" />
             </a>
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            <FaLinkedin className="text-lg md:text-xl lg:text-2xl text-blue-600" />
+            
             <a
               href="https://www.linkedin.com/in/folkode"
               target="_blank"
               rel="noopener noreferrer"
-              className="truncate font-medium hover:underline"
+              className="truncate font-medium hover:underline bg-[#025159!important] p-4 rounded-full"
             >
-              Linkedin
+              <FaLinkedin title="LinkedIn" className="text-lg md:text-xl lg:text-2xl text-white" />
             </a>
           </div>
         </div>
