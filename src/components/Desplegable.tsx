@@ -44,9 +44,9 @@ export default function Desplegable() {
                     style={{
                         position: "absolute",
                         top: "100%",
-                        right: '-5.3rem',
+                        right: '-5.8rem',
                         zIndex: 10,
-                        width: "12.5rem",
+                        width: "100%",
                         background: "#025159",
                         boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
                         display: "flex",
