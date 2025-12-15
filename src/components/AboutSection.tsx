@@ -13,9 +13,9 @@ export default function AboutSection() {
           py-2
           flex 
           justify-center
-          bg-[linear-gradient(to_bottom,rgba(11,79,85,0.9),rgb(43,90,93),rgb(74,129,86,79%))]
-          shadow-[0_1px_15px_10px_#025159]
+          bg-[rgb(11,79,85)]
           blur-2
+          rounded-t-3xl
         ">
           <h2 className="aboutHeaderTitle text-[1rem] md:text-[2rem] flex items-center sd:text">
             <ChevronsLeft size={50} className="chevrons-icon scale-[.6] md:scale-[.8]"/>
@@ -55,31 +55,29 @@ export default function AboutSection() {
 
                 <div className="aboutImgHover">
                   <Image
-                    src="/images/equipo-folkode.jpg"
+                    src="/images/grupo.png"
                     alt="Equipo Folkode"
                     width={900}
                     height={600}
-                    className="aboutImg"
+                    className="aboutImg border-[3px,solid,#025159]"
                     priority
                   />
                 </div>
               </div>
 
               {/* Texto */}
-              <div className="aboutTextFull">
+              <div className="aboutTextFull text-xl">
                 <p>
                   Somos un equipo apasionado por el desarrollo web moderno y el diseño centrado en el usuario.
                   Creamos soluciones digitales que combinan funcionalidad, estética y tecnología de vanguardia.
-                </p>
-
-                <p>
+                  <br />
+                  <br />
                   Trabajamos junto a clientes y empresas para entender sus necesidades, identificar sus dolencias y
                   transformar esas dificultades en herramientas digitales eficientes, seguras y fáciles de usar.
-                </p>
-
-                <p className="aboutTextStrong">
+                  <br />
+                  <br />
                   Construir productos que no solo funcionen, sino que inspiren y conecten con las personas.
-                  En Folkode, tu visión es nuestra misión.
+                  <br />En Folkode, tu visión es nuestra misión.
                 </p>
               </div>
             </div>
