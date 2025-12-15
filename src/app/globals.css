@@ -2604,15 +2604,10 @@ picture {
 /* Card */
 .aboutCardFull{
   width: 100%;
-  background: #1E1E1E;
+  background: #56743c10;
+  backdrop-filter: blur(10px);
   overflow: hidden;
 }
-
-/* Zona oscura */
-.aboutTopFull{
-  background: inherit;
-}
-
 
 .aboutGridFull{
   max-width: 1300px;
@@ -2669,7 +2664,6 @@ picture {
 /* Texto */
 .aboutTextFull{
   color: #e6edf3;
-  font-size: 1.02rem;
   line-height: 1.7;
 
   text-align: justify;
