@@ -47,13 +47,14 @@ type ClienteCardProps = {
   image: StaticImageData;
   title: string;
   description: string;
-  // url: string; // Eliminado por no uso
+  // url opcional para abrir proyecto en nueva pestaña
+  url?: string;
   category: string;
   onClick?: () => void;
   previewImages?: string[];
 };
 
-function ClienteCard({ image, title, description, category, onClick, previewImages }: ClienteCardProps) {
+function ClienteCard({ image, title, description, category, onClick, previewImages, url }: ClienteCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: '-40px' });
   const rotateX = useMotionValue(0);
@@ -130,7 +131,7 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
           <span className="proyecto-etiqueta">{category}</span>
           {/* Mini-slider de imágenes dentro de la card */}
           {previewImages && previewImages.length > 0 ? (
-            <div 
+            <div
               style={{ position: 'relative', width: '100%', height: '200px', cursor: onClick && !isMobile ? 'pointer' : 'default' }}
               onClick={onClick && !isMobile ? handleCardClick : undefined}
             >
@@ -138,7 +139,7 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
                 modules={[Pagination]}
                 spaceBetween={0}
                 slidesPerView={1}
-                pagination={{ 
+                pagination={{
                   clickable: true,
                   dynamicBullets: true,
                 }}
@@ -195,7 +196,30 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
         <div className="proyecto-info" style={{ cursor: onClick && !isMobile ? 'pointer' : 'default', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
           <h3 className="proyecto-titulo">{title}</h3>
           <p className="proyecto-desc">{description}</p>
-          {/* El botón solo se muestra en móvil fuera de la card, no aquí */}
+          {/* Mostrar botón dentro de la card para escritorio */}
+          {!isMobile && (
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              {url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="proyecto-btn"
+                  style={{ textAlign: 'center', minWidth: 160 }}
+                >
+                  Ver proyecto
+                </a>
+              ) : onClick ? (
+                <button
+                  onClick={onClick}
+                  className="proyecto-btn"
+                  style={{ textAlign: 'center', minWidth: 160 }}
+                >
+                  Ver proyecto
+                </button>
+              ) : null}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
@@ -560,18 +584,18 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             padding: '1rem',
           }}
         >
-        <button 
-          style={{ 
-            position: 'absolute', 
-            top: 20, 
-            right: 20, 
-            cursor: 'pointer', 
-            fontSize: 24, 
-            color: '#ffffff', 
-            background: 'rgba(30, 111, 163, 0.2)', 
-            borderRadius: '50%', 
-            padding: 10, 
-            border: 'none', 
+        <button
+          style={{
+            position: 'absolute',
+            top: 20,
+            right: 20,
+            cursor: 'pointer',
+            fontSize: 24,
+            color: '#ffffff',
+            background: 'rgba(30, 111, 163, 0.2)',
+            borderRadius: '50%',
+            padding: 10,
+            border: 'none',
             zIndex: 10001,
             width: 40,
             height: 40,
@@ -579,39 +603,39 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             alignItems: 'center',
             justifyContent: 'center',
             transition: 'all 0.2s ease'
-          }} 
+          }}
           onClick={onClose}
           onMouseEnter={e => e.currentTarget.style.background = 'rgba(30, 111, 163, 0.4)'}
           onMouseLeave={e => e.currentTarget.style.background = 'rgba(30, 111, 163, 0.2)'}
         >
           <FaTimes />
         </button>
-        
+
         {/* Sidebar */}
-        <aside style={{ 
-          width: 250, 
-          background: 'rgba(10, 35, 66, 0.8)', 
-          padding: '40px 0', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: 8, 
-          borderRight: '1px solid rgba(30, 111, 163, 0.3)' 
+        <aside style={{
+          width: 250,
+          background: 'rgba(10, 35, 66, 0.8)',
+          padding: '40px 0',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 8,
+          borderRight: '1px solid rgba(30, 111, 163, 0.3)'
         }}>
           {data.sections.map((sec: ModalSection, idx: number) => (
             <div key={sec.key}>
               <button
                 style={{
-                  width: '100%', 
+                  width: '100%',
                   background: idx === sectionIdx ? 'linear-gradient(90deg, #1e6fa3 0%, #0a2342 100%)' : 'transparent',
-                  color: idx === sectionIdx ? '#ffffff' : '#b3d9ff', 
-                  border: 'none', 
-                  padding: '14px 24px', 
-                  textAlign: 'left', 
-                  fontWeight: idx === sectionIdx ? 600 : 500, 
-                  cursor: 'pointer', 
-                  fontSize: 16, 
-                  borderRadius: 8, 
-                  marginBottom: 4, 
+                  color: idx === sectionIdx ? '#ffffff' : '#b3d9ff',
+                  border: 'none',
+                  padding: '14px 24px',
+                  textAlign: 'left',
+                  fontWeight: idx === sectionIdx ? 600 : 500,
+                  cursor: 'pointer',
+                  fontSize: 16,
+                  borderRadius: 8,
+                  marginBottom: 4,
                   transition: 'all 0.2s ease',
                   letterSpacing: '0.3px'
                 }}
@@ -636,17 +660,17 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
                     <button
                       key={sub.key}
                       style={{
-                        width: '90%', 
+                        width: '90%',
                         background: sidx === subIdx ? 'linear-gradient(90deg, #1e6fa3 0%, #0a2342 100%)' : 'transparent',
-                        color: sidx === subIdx ? '#ffffff' : '#b3d9ff', 
-                        border: 'none', 
-                        padding: '10px 20px', 
-                        textAlign: 'left', 
-                        fontSize: 14, 
-                        cursor: 'pointer', 
-                        borderRadius: 6, 
-                        marginBottom: 2, 
-                        fontWeight: sidx === subIdx ? 600 : 400, 
+                        color: sidx === subIdx ? '#ffffff' : '#b3d9ff',
+                        border: 'none',
+                        padding: '10px 20px',
+                        textAlign: 'left',
+                        fontSize: 14,
+                        cursor: 'pointer',
+                        borderRadius: 6,
+                        marginBottom: 2,
+                        fontWeight: sidx === subIdx ? 600 : 400,
                         transition: 'all 0.2s ease',
                       }}
                       onClick={() => handleSubsection(sidx)}
@@ -669,71 +693,71 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             </div>
           ))}
         </aside>
-        
+
         {/* Main content */}
-        <main style={{ 
-          flex: 1, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          padding: 40, 
-          position: 'relative', 
+        <main style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 40,
+          position: 'relative',
           minWidth: 0,
           color: '#ffffff'
         }}>
-          <h2 style={{ 
-            color: '#ffffff', 
-            fontSize: 32, 
-            marginBottom: 12, 
-            fontWeight: 700, 
+          <h2 style={{
+            color: '#ffffff',
+            fontSize: 32,
+            marginBottom: 12,
+            fontWeight: 700,
             textAlign: 'center',
             letterSpacing: '0.5px'
           }}>
             {title}
           </h2>
-          <p style={{ 
-            color: '#b3d9ff', 
-            fontSize: 18, 
-            marginBottom: 30, 
-            maxWidth: 600, 
-            textAlign: 'center', 
-            fontWeight: 400, 
+          <p style={{
+            color: '#b3d9ff',
+            fontSize: 18,
+            marginBottom: 30,
+            maxWidth: 600,
+            textAlign: 'center',
+            fontWeight: 400,
             lineHeight: 1.5
           }}>
             {description}
           </p>
-          
+
           {/* Slider de imágenes */}
-          <div style={{ 
-            position: 'relative', 
-            width: '100%', 
-            maxWidth: 700, 
-            height: 420, 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            background: 'rgba(0, 0, 0, 0.3)', 
-            borderRadius: 16, 
-            overflow: 'hidden', 
-            marginBottom: 20, 
-            border: '1px solid rgba(30, 111, 163, 0.2)' 
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: 700,
+            height: 420,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'rgba(0, 0, 0, 0.3)',
+            borderRadius: 16,
+            overflow: 'hidden',
+            marginBottom: 20,
+            border: '1px solid rgba(30, 111, 163, 0.2)'
           }}>
-            <button 
-              onClick={handlePrevImg} 
-              style={{ 
-                position: 'absolute', 
-                left: 15, 
-                top: '50%', 
-                transform: 'translateY(-50%)', 
-                background: 'rgba(30, 111, 163, 0.8)', 
-                color: '#ffffff', 
-                border: 'none', 
-                borderRadius: '50%', 
-                width: 44, 
-                height: 44, 
-                fontSize: 18, 
-                cursor: 'pointer', 
+            <button
+              onClick={handlePrevImg}
+              style={{
+                position: 'absolute',
+                left: 15,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'rgba(30, 111, 163, 0.8)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '50%',
+                width: 44,
+                height: 44,
+                fontSize: 18,
+                cursor: 'pointer',
                 zIndex: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -745,7 +769,7 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             >
               <FaChevronLeft />
             </button>
-            
+
             {images && images.length > 0 ? (
               <Image
                 src={images[imgIdx]}
@@ -766,22 +790,22 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             ) : (
               <div style={{ color: '#1e6fa3', fontSize: 20 }}>Sin imágenes</div>
             )}
-            
-            <button 
-              onClick={handleNextImg} 
-              style={{ 
-                position: 'absolute', 
-                right: 15, 
-                top: '50%', 
-                transform: 'translateY(-50%)', 
-                background: 'rgba(30, 111, 163, 0.8)', 
-                color: '#ffffff', 
-                border: 'none', 
-                borderRadius: '50%', 
-                width: 44, 
-                height: 44, 
-                fontSize: 18, 
-                cursor: 'pointer', 
+
+            <button
+              onClick={handleNextImg}
+              style={{
+                position: 'absolute',
+                right: 15,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'rgba(30, 111, 163, 0.8)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '50%',
+                width: 44,
+                height: 44,
+                fontSize: 18,
+                cursor: 'pointer',
                 zIndex: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -793,27 +817,27 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             >
               <FaChevronRight />
             </button>
-            
+
             {/* Miniaturas debajo del slider */}
             {images && images.length > 1 && (
-              <div style={{ 
-                position: 'absolute', 
-                bottom: 15, 
-                left: '50%', 
-                transform: 'translateX(-50%)', 
-                display: 'flex', 
-                gap: 8, 
-                zIndex: 2 
+              <div style={{
+                position: 'absolute',
+                bottom: 15,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: 8,
+                zIndex: 2
               }}>
                 {images.map((img: string, idx: number) => (
-                  <button 
-                    key={idx} 
-                    onClick={() => setImgIdx(idx)} 
-                    style={{ 
-                      border: 'none', 
-                      background: 'transparent', 
-                      padding: 0, 
-                      cursor: 'pointer' 
+                  <button
+                    key={idx}
+                    onClick={() => setImgIdx(idx)}
+                    style={{
+                      border: 'none',
+                      background: 'transparent',
+                      padding: 0,
+                      cursor: 'pointer'
                     }}
                   >
                     <Image
@@ -822,11 +846,11 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
                       width={60}
                       height={36}
                       sizes="60px"
-                      style={{ 
-                        borderRadius: 6, 
-                        border: idx === imgIdx ? '2px solid #1e6fa3' : '1px solid rgba(255, 255, 255, 0.3)', 
-                        opacity: idx === imgIdx ? 1 : 0.7, 
-                        transition: 'all 0.2s ease', 
+                      style={{
+                        borderRadius: 6,
+                        border: idx === imgIdx ? '2px solid #1e6fa3' : '1px solid rgba(255, 255, 255, 0.3)',
+                        opacity: idx === imgIdx ? 1 : 0.7,
+                        transition: 'all 0.2s ease',
                         objectFit: 'cover',
                         background: '#000000'
                       }}
@@ -875,17 +899,26 @@ export default function ProyClientes() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState<ModalData | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string>('Todos');
+  const filters = ['Todos', 'E-commerce', 'Landing page', 'Corporativo', 'Multimedia', 'Web', 'Software'];
+  const [startIdx, setStartIdx] = useState(0);
+  const swiperRef = useRef<any>(null);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    // reset pagination when filter changes
+    setStartIdx(0);
+  }, [activeFilter]);
 
   // Utilidad para extraer todas las imágenes de un modalData (incluyendo subsecciones)
   function getAllModalImages(modalData: ModalData): string[] {
@@ -924,7 +957,7 @@ export default function ProyClientes() {
       title: 'RadioGo',
       description: 'Página de Streaming de radio y entretenimiento',
       url: 'https://radiogo.com.ar/',
-      category: 'Web',
+      category: 'Multimedia',
       previewImages: isMobile ? getAllModalImages(radioGoModalData) : [
         '/images/proyectos/radio-go/radio-go-01.webp',
         '/images/proyectos/radio-go/radio-go-02.webp',
@@ -1005,13 +1038,14 @@ export default function ProyClientes() {
       },
     }
   ];
+  const filteredProjects = proyectos.filter(p => activeFilter === 'Todos' ? true : p.category === activeFilter);
   return (
     <section id="proyectos" className="proyectos-seccion">
       <div className="proyectos-cabecera">
         <h2 className="proyectos-titulo-principal">Proyectos de Nuestros Clientes</h2>
         <p className="proyectos-descripcion">Soluciones digitales a medida para empresas y emprendedores. Descubre cómo potenciamos negocios con tecnología y diseño.</p>
       </div>
-      
+
       {isMobile ? (
         // Vista móvil: Slider horizontal estilo Netflix
         <div style={{ width: '100%', padding: '0 1rem' }}>
@@ -1073,14 +1107,67 @@ export default function ProyClientes() {
           </Swiper>
         </div>
       ) : (
-        // Vista desktop: Grid tradicional
-        <div className="proyectos-contenedor">
-          {proyectos.map((proyecto, index) => (
-            <ClienteCard key={index} {...proyecto} />
-          ))}
+        // Vista desktop: Swiper centrado con 3 slides visibles
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <h3 style={{ color: '#ffffff', fontSize: 40, marginLeft: 8, marginBottom: 6, fontWeight: 700 }}>Proyectos</h3>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setActiveFilter(f)}
+                  style={{
+                    padding: '8px 18px',
+                    borderRadius: 999,
+                    border: activeFilter === f ? 'none' : '2px solid rgba(134,168,105,0.25)',
+                    background: activeFilter === f ? 'linear-gradient(90deg, #3383b7 0%, #86A869 100%)' : 'transparent',
+                    color: activeFilter === f ? '#fff' : '#cfe9df',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    textAlign: 'center'
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="proyectos-carousel">
+            <Swiper
+              key={`desktop-swiper-${filteredProjects.length}-${activeFilter}`}
+              modules={[Navigation]}
+              spaceBetween={24}
+              slidesPerView={filteredProjects.length >= 3 ? 3 : Math.min(2, filteredProjects.length)}
+              centeredSlides={filteredProjects.length >= 3}
+              loop={filteredProjects.length > 3}
+              navigation={true}
+              initialSlide={filteredProjects.length >= 3 ? 1 : 0}
+              onSwiper={(s) => {
+                swiperRef.current = s;
+                // Force center the second visible slide when possible
+                if (filteredProjects.length >= 3) {
+                  // small timeout to ensure Swiper has initialized
+                  setTimeout(() => {
+                    try { s.slideToLoop(1, 0); } catch (e) { /* ignore */ }
+                  }, 50);
+                }
+              }}
+              onSlideChange={() => {
+                // no-op placeholder, keeping ref updated if needed later
+              }}
+              style={{ padding: '1rem 0' }}
+            >
+              {filteredProjects.map((proyecto, index) => (
+                <SwiperSlide key={index}>
+                  <ClienteCard {...proyecto} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       )}
-      
+
       <AnimatePresence>
         {modalOpen && modalData && (
           <ProyectoModal data={modalData} onClose={() => setModalOpen(false)} />
