@@ -1,11 +1,12 @@
 
 'use client'
-import RadioGo from '@/assets/images/ProyClientes/RadioGo.webp';
-import Andet from '@/assets/images/ProyClientes/Andet.webp';
-import Autopartes from '@/assets/images/ProyClientes/Autopartes.webp';
-import Luminova from '@/assets/images/ProyClientes/Luminova.webp';
-import Revisteria from '@/assets/images/ProyClientes/Revisteria.webp';
-import Congreso from '@/assets/images/ProyClientes/congreso.webp';
+// Card images replaced with their '-dual.webp' variants from the public/images/proyectos folders
+const CongresoDual = '/images/proyectos/congreso/congreso-dual.webp';
+const RadioGoDual = '/images/proyectos/radio-go/radio-go-dual.webp';
+const AndetDual = '/images/proyectos/andet/andet-dual.webp';
+const AutopartesDual = '/images/proyectos/autopartes-deloreans/autopartes-dual.webp';
+const LuminovaDual = '/images/proyectos/luminova/luminova-dual.webp';
+const RevisteriaDual = '/images/proyectos/revisteria/revisteria-dual.webp';
 import Image, { StaticImageData } from 'next/image';
 import { motion, useMotionValue, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
@@ -44,7 +45,7 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 
 
 type ClienteCardProps = {
-  image: StaticImageData;
+  image: string | StaticImageData;
   title: string;
   description: string;
   // url opcional para abrir proyecto en nueva pestaña
@@ -127,12 +128,12 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
       onClick={onClick && !isMobile ? handleCardClick : undefined}
     >
       <div style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
-        <div className="proyecto-img-wrapper">
-          <span className="proyecto-etiqueta">{category}</span>
+        <div className="proyecto-img-wrapper" style={{ position: 'relative', width: '100%', height: 300, overflow: 'hidden', borderTopLeftRadius: 18, borderTopRightRadius: 18, background: '#eaf6fa' }}>
+          <span className="proyecto-etiqueta" style={{ position: 'absolute', top: 12, left: 12, zIndex: 2 }}>{category}</span>
           {/* Mini-slider de imágenes dentro de la card */}
           {previewImages && previewImages.length > 0 ? (
             <div
-              style={{ position: 'relative', width: '100%', height: '200px', cursor: onClick && !isMobile ? 'pointer' : 'default' }}
+              style={{ position: 'relative', width: '100%', height: '100%', cursor: onClick && !isMobile ? 'pointer' : 'default' }}
               onClick={onClick && !isMobile ? handleCardClick : undefined}
             >
               <Swiper
@@ -158,7 +159,7 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
                       fill
                       className="proyecto-img"
                       sizes="(max-width: 768px) 90vw, 400px"
-                      style={{ objectFit: 'cover', cursor: onClick && !isMobile ? 'pointer' : 'default' }}
+                      style={{ objectFit: 'cover', width: '100%', height: '100%', pointerEvents: 'none' }}
                     />
                   </SwiperSlide>
                 ))}
@@ -184,40 +185,28 @@ function ClienteCard({ image, title, description, category, onClick, previewImag
             <Image
               src={image}
               alt={title}
-              width={image.width}
-              height={image.height}
+              width={typeof image === 'string' ? 400 : image.width}
+              height={typeof image === 'string' ? 300 : image.height}
               className="proyecto-img"
               sizes="(max-width: 768px) 90vw, 400px"
-              style={{ cursor: onClick && !isMobile ? 'pointer' : 'default' }}
+              style={{ objectFit: 'cover', width: '100%', height: '100%', pointerEvents: 'none' }}
               onClick={onClick && !isMobile ? handleCardClick : undefined}
             />
           )}
         </div>
-        <div className="proyecto-info" style={{ cursor: onClick && !isMobile ? 'pointer' : 'default', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+        <div className="proyecto-info" style={{ cursor: onClick && !isMobile ? 'pointer' : 'default', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', background: 'rgba(4, 28, 22, 0.92)', borderBottomLeftRadius: 18, borderBottomRightRadius: 18, padding: '20px 18px 18px 18px', marginTop: 0 }}>
           <h3 className="proyecto-titulo">{title}</h3>
           <p className="proyecto-desc">{description}</p>
           {/* Mostrar botón dentro de la card para escritorio */}
           {!isMobile && (
             <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              {url ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="proyecto-btn"
-                  style={{ textAlign: 'center', minWidth: 160 }}
-                >
-                  Ver proyecto
-                </a>
-              ) : onClick ? (
-                <button
-                  onClick={onClick}
-                  className="proyecto-btn"
-                  style={{ textAlign: 'center', minWidth: 160 }}
-                >
-                  Ver proyecto
-                </button>
-              ) : null}
+              <button
+                onClick={onClick}
+                className="proyecto-btn pointer"
+                style={{ textAlign: 'center', minWidth: 160 }}
+              >
+                Ver galería
+              </button>
             </div>
           )}
         </div>
@@ -574,7 +563,7 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
             height: 'auto',
             minHeight: '600px',
             maxHeight: '90vh',
-            background: 'linear-gradient(135deg, #0a2342 0%, #163d5c 100%)',
+            background: 'linear-gradient(135deg, #214d40ff 0%, #0b312dff 100%)',
             borderRadius: 20,
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
             overflow: 'hidden',
@@ -614,19 +603,20 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
         {/* Sidebar */}
         <aside style={{
           width: 250,
-          background: 'rgba(10, 35, 66, 0.8)',
+          background: '#092232ff ',
           padding: '40px 0',
           display: 'flex',
           flexDirection: 'column',
           gap: 8,
-          borderRight: '1px solid rgba(30, 111, 163, 0.3)'
+          borderRight: '1px solid rgba(8, 52, 41, 0.3)',
+          borderRadius: 12
         }}>
           {data.sections.map((sec: ModalSection, idx: number) => (
             <div key={sec.key}>
               <button
                 style={{
                   width: '100%',
-                  background: idx === sectionIdx ? 'linear-gradient(90deg, #1e6fa3 0%, #0a2342 100%)' : 'transparent',
+                  background: idx === sectionIdx ? 'linear-gradient(90deg, #144a6cff 0%, #063e2aff 100%)' : 'transparent',
                   color: idx === sectionIdx ? '#ffffff' : '#b3d9ff',
                   border: 'none',
                   padding: '14px 24px',
@@ -661,7 +651,7 @@ function ProyectoModal({ data, onClose }: { data: ModalData; onClose: () => void
                       key={sub.key}
                       style={{
                         width: '90%',
-                        background: sidx === subIdx ? 'linear-gradient(90deg, #1e6fa3 0%, #0a2342 100%)' : 'transparent',
+                        background: sidx === subIdx ? 'linear-gradient(90deg, #1e6fa3 0%, #19bd1fff 100%)' : 'transparent',
                         color: sidx === subIdx ? '#ffffff' : '#b3d9ff',
                         border: 'none',
                         padding: '10px 20px',
@@ -936,7 +926,7 @@ export default function ProyClientes() {
 
   const proyectos = [
     {
-      image: Congreso,
+      image: CongresoDual,
       title: 'Congreso',
       description: 'Página oficial del Congreso De Logística y Transporte de la Universidad Nacional Guillermo Brown',
       url: 'https://www.congresologistica.unab.edu.ar/',
@@ -953,7 +943,7 @@ export default function ProyClientes() {
       },
     },
     {
-      image: RadioGo,
+      image: RadioGoDual,
       title: 'RadioGo',
       description: 'Página de Streaming de radio y entretenimiento',
       url: 'https://radiogo.com.ar/',
@@ -970,7 +960,7 @@ export default function ProyClientes() {
       },
     },
     {
-      image: Andet,
+      image: AndetDual,
       title: 'Andet',
       description: 'E-commerce de productos industriales de servicios eléctricos',
       url: 'https://demo-andet-ecommerce.onrender.com/',
@@ -987,7 +977,7 @@ export default function ProyClientes() {
       },
     },
     {
-      image: Autopartes,
+      image: AutopartesDual,
       title: 'Autopartes Deloreans',
       description: 'E-commerce Empresarial de gestión de autopartes',
       url: 'https://web-autopartes.vercel.app/',
@@ -1004,7 +994,7 @@ export default function ProyClientes() {
       },
     },
     {
-      image: Luminova,
+      image: LuminovaDual,
       title: 'Luminova',
       description: 'Software ERP de ensamblado de luminarias con productos importados',
       url: 'https://luminovaerp.pythonanywhere.com/ ',
@@ -1021,7 +1011,7 @@ export default function ProyClientes() {
       },
     },
     {
-      image: Revisteria,
+      image: RevisteriaDual,
       title: 'La Revisteria',
       description: 'E-commerce de libros y cómics de colección',
       url: 'https://revisteria.pythonanywhere.com/',
@@ -1108,10 +1098,10 @@ export default function ProyClientes() {
         </div>
       ) : (
         // Vista desktop: Swiper centrado con 3 slides visibles
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: "1rem", marginBottom: "2rem" }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <h3 style={{ color: '#ffffff', fontSize: 40, marginLeft: 8, marginBottom: 6, fontWeight: 700 }}>Proyectos</h3>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <h3 style={{ color: '#ffffff', fontSize: 52, marginLeft: 8, marginBottom: 16, fontWeight: 700, alignSelf: "center" }}>Proyectos</h3>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignSelf: "center", marginBottom: 24 }}>
               {filters.map((f) => (
                 <button
                   key={f}

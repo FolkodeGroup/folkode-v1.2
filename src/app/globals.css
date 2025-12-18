@@ -2757,9 +2757,9 @@ picture {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 46%;
+  height: 25%;
   /* reducir intensidad del degradado teal */
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(6,77,81,0.28) 40%, rgba(6,77,81,0.44) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(6,77,81,0.28) 20%, rgba(6,77,81,0.44) 100%);
   pointer-events: none;
   transition: opacity 0.25s ease;
   z-index: 1; /* banda oscura/blur bajo el overlay */
