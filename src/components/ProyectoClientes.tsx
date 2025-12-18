@@ -1128,26 +1128,29 @@ export default function ProyClientes() {
               key={`desktop-swiper-${filteredProjects.length}-${activeFilter}`}
               modules={[Navigation]}
               spaceBetween={24}
-              slidesPerView={filteredProjects.length >= 3 ? 3 : Math.min(2, filteredProjects.length)}
-              centeredSlides={filteredProjects.length >= 3}
+              slidesPerView={3}
+              centeredSlides={true}
               loop={filteredProjects.length > 3}
               navigation={true}
-              initialSlide={filteredProjects.length >= 3 ? 1 : 0}
+              initialSlide={1}
               onSwiper={(s) => {
                 swiperRef.current = s;
                 // Force center the second visible slide when possible
-                if (filteredProjects.length >= 3) {
-                  // small timeout to ensure Swiper has initialized
-                  setTimeout(() => {
-                    try { s.slideToLoop(1, 0); } catch (e) { /* ignore */ }
-                  }, 50);
-                }
+                setTimeout(() => {
+                  try { s.slideToLoop(1, 0); } catch (e) { /* ignore */ }
+                }, 50);
               }}
               onSlideChange={() => {
                 // no-op placeholder, keeping ref updated if needed later
               }}
               style={{ padding: '1rem 0' }}
             >
+              {/* Si hay exactamente 2 proyectos, agregamos un slide vacío al inicio */}
+              {filteredProjects.length === 2 && (
+                <SwiperSlide key="empty-slide">
+                  <div style={{ width: '100%', height: '100%' }} />
+                </SwiperSlide>
+              )}
               {filteredProjects.map((proyecto, index) => (
                 <SwiperSlide key={index}>
                   <ClienteCard {...proyecto} />
