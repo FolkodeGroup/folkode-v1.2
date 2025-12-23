@@ -228,13 +228,12 @@ export default function TeamMemberSection() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedMember.id}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.85 }}
                   transition={{ 
-                    duration: 0.5, 
-                    ease: [0.4, 0, 0.2, 1],
-                    delay: 0
+                    duration: 0.4, 
+                    ease: [0.4, 0, 0.2, 1]
                   }}
                   className="w-full h-full"
                 >
@@ -255,25 +254,45 @@ export default function TeamMemberSection() {
               </AnimatePresence>
             </div>
 
-            {/* Tarjeta de información - Vertical en móvil, horizontal en desktop */}
+            {/* Tarjeta de información - Animación horizontal desde la izquierda */}
             <AnimatePresence mode="wait">
               {!isTransitioning && (
                 <motion.div
                   key={selectedMember.id + '-card'}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -30, scale: 0.95 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    ease: [0.4, 0, 0.2, 1],
-                    delay: 0.3 // Delay para que aparezca después de la imagen
+                  initial={{ 
+                    opacity: 0,
+                    scaleX: 0,
+                    x: 0
                   }}
-                  className="relative overflow-hidden w-full mt-6 lg:mt-0 lg:ml-[-140px] lg:w-auto"
+                  animate={{ 
+                    opacity: 1,
+                    scaleX: 1,
+                    x: 0
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    scaleX: 0,
+                    x: 0
+                  }}
+                  transition={{ 
+                    duration: 0.65,
+                    ease: [0.4, 0, 0.2, 1],
+                    delay: 0.35,
+                    opacity: { duration: 0.65, delay: 0.35 },
+                    scaleX: { duration: 0.65, delay: 0.35 }
+                  }}
+                  className="relative w-full mt-6 lg:mt-0 lg:ml-[-140px] lg:w-auto origin-left"
                   style={{
-                    zIndex: 0
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    transformOrigin: 'left center'
                   }}
                 >
-                <div
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
                   className="h-full flex flex-col justify-center shadow-xl w-full rounded-[20px] lg:rounded-l-none lg:rounded-r-[20px] lg:min-h-[280px] lg:min-w-[480px]"
                   style={{
                     background: '#0B4F50',
@@ -281,25 +300,25 @@ export default function TeamMemberSection() {
                 >
                   <div className="px-6 py-6 lg:pl-[180px] lg:pr-10">  
                     <motion.h3 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4, duration: 0.4 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.75, duration: 0.3 }}
                       className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 text-center lg:text-left"
                     >
                       {selectedMember.name}
                     </motion.h3>
                     <motion.p 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5, duration: 0.4 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.85, duration: 0.3 }}
                       className="text-base sm:text-lg lg:text-xl text-gray-200 font-normal mb-3 sm:mb-4 text-center lg:text-left"
                     >
                       {selectedMember.role}
                     </motion.p>
                     <motion.p 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6, duration: 0.4 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.95, duration: 0.3 }}
                       className="text-white text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-center lg:text-left"
                     >
                       {selectedMember.description}
@@ -307,9 +326,9 @@ export default function TeamMemberSection() {
                   
                     {/* Enlaces sociales */}
                     <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.7, duration: 0.4 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.05, duration: 0.3 }}
                       className="flex gap-4 justify-center lg:justify-start"
                     >
                       {selectedMember.links.github && selectedMember.links.github !== '#' && (
@@ -344,7 +363,7 @@ export default function TeamMemberSection() {
                       )}
                     </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
               )}
             </AnimatePresence>
