@@ -55,7 +55,8 @@ const Navbar: React.FC = () => {
           <div className="navbar-left">
             <div className="navbar-left-diagonal">
               <Image
-                className="navbar-logo-img fade-in"
+                className="navbar-logo-img fade-in cursor-pointer"
+                onClick={handleScrollToTop}
                 src="/Folkode_Logo_Bold_Black.png"
                 alt="Folkode Logo"
                 width={180}
@@ -63,8 +64,6 @@ const Navbar: React.FC = () => {
                 sizes="(max-width: 768px) 160px, 180px"
                 style={{
                   filter: 'drop-shadow(0 2px 16px #86A869cc)',
-                  width: '95px',
-                  height: '95px',
                   maxWidth: '160px',
                   maxHeight: '160px',
                   marginTop: 8,
@@ -127,12 +126,12 @@ const Navbar: React.FC = () => {
               })}
             </div>
             {/* Botón hamburguesa solo visible en móvil, alineado a la derecha */}
-            <div className="flex md:hidden items-center h-full pr-4">
+            <div className="flex md:hidden items-center h-full">
               <button
                 className="flex flex-col justify-center items-center w-12 h-12 ml-30 focus:outline-none"
                 onClick={toggleMenu}
                 aria-label="Abrir menú"
-                style={{ background: 'rgba(1,69,79,0.92)', border: 'none', padding: 0, borderRadius: '16px', boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)', position: 'relative' }}
+                style={{ border: 'none', padding: 0, borderRadius: '16px', position: 'relative' }}
               >
                 <span style={{
                   display: 'block',
@@ -252,7 +251,7 @@ const Navbar: React.FC = () => {
                   );
                 } else if (item.target === 'inicio') {
                   return (
-                    <div key={item.id} style={{ width: '100%' }}>
+                    <div key={item.id} style={{ width: '100%', display: "flex", justifyContent: "center" }}>
                       <button
                         onClick={() => {
                           handleScrollToTop();
@@ -267,7 +266,7 @@ const Navbar: React.FC = () => {
                   );
                 } else {
                   return (
-                    <div key={item.id} style={{ width: '100%' }}>
+                    <div key={item.id} style={{ width: '100%', display: "flex", justifyContent: "center"}}>
                       <ScrollLink
                         to={item.target || ''}
                         spy={true}
