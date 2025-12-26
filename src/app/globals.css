@@ -1,6 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap');
 @import 'tailwindcss';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Jerarquía Tipográfica - Titillium Web */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px; /* Espaciado para orden visual */
+}
+
+h1 {
+  font-size: 3.5rem; /* 56px - Mayor impacto visual */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.75rem; /* 44px - Secciones principales */
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 2rem; /* 32px - Subsecciones */
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Responsive - Ajustes para móviles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* 40px en móvil */
+    letter-spacing: 1px;
+  }
+  
+  h2 {
+    font-size: 2rem; /* 32px en móvil */
+  }
+  
+  h3 {
+    font-size: 1.5rem; /* 24px en móvil */
+  }
+}
+
+body, p, span, div {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px; /* Ligeramente espaciado para legibilidad */
+}
 
 /* Ocultar scrollbar en carruseles móviles */
 .scrollbar-hide {

@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="dark" style={{ fontFamily: "'Roboto', sans-serif" }} suppressHydrationWarning>
+      <body className="dark" style={{ fontFamily: "'Titillium Web', sans-serif" }} suppressHydrationWarning>
         <Navbar />
         <div id="main-content" className="main-content-with-footer">
           <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>{children}</main>
