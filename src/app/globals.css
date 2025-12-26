@@ -2668,24 +2668,46 @@ picture {
 .proyectos-carousel .swiper-button-prev {
   position: absolute;
   top: 50%;
-  transform: translateY(-25%);
+  transform: translateY(-50%);
   color: #fff;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #0e6b6b, #0a4f50);
-  box-shadow: 0 8px 20px rgba(2,81,89,0.12);
-  display: flex;
+  background: rgba(14, 107, 107, 0.8);
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(2,81,89,0.3);
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  z-index: 60;
+  z-index: 100 !important;
   pointer-events: auto;
-}
-.proyectos-carousel .swiper-button-next::after, .proyectos-carousel .swiper-button-prev::after {
-  display: none; /* ocultar contenido por defecto para usar nuestro SVG */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Insertar SVGs inline como pseudo-elementos para chevrons más gruesos y modernos */
+/* Separación de las flechas respecto a las cards */
+.proyectos-carousel .swiper-button-prev {
+  left: -10px !important;
+}
+
+.proyectos-carousel .swiper-button-next {
+  right: -10px !important;
+}
+
+.proyectos-carousel .swiper-button-next:hover,
+.proyectos-carousel .swiper-button-prev:hover {
+  background: rgba(14, 107, 107, 1);
+  box-shadow: 0 12px 30px rgba(2,81,89,0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.proyectos-carousel .swiper-button-next::after, 
+.proyectos-carousel .swiper-button-prev::after {
+  display: none;
+}
+
+/* Insertar SVGs inline como pseudo-elementos para chevrons */
 .proyectos-carousel .swiper-button-next::before,
 .proyectos-carousel .swiper-button-prev::before {
   content: '';
@@ -2697,41 +2719,22 @@ picture {
   background-size: contain;
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.28));
 }
+
 .proyectos-carousel .swiper-button-next::before {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='6,4 18,12 6,20' fill='%23ffffff'/></svg>");
 }
+
 .proyectos-carousel .swiper-button-prev::before {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='6,4 18,12 6,20' fill='%23ffffff'/></svg>");
   transform: rotate(180deg);
 }
 
-/* Visual style: circular soft background + border */
-.proyectos-carousel .swiper-button-next,
-.proyectos-carousel .swiper-button-prev {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(4px);
-  /* transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; */
-}
-.proyectos-carousel .swiper-button-next:hover,
-.proyectos-carousel .swiper-button-prev:hover {
-  /* transform: translateY(-2px) scale(1); */
-  background: rgba(255,255,255,0.12);
-  box-shadow: 0 12px 30px rgba(2,81,89,0.18);
-}
-
-/* Place arrows clearly outside the cards */
-.proyectos-carousel .swiper-button-prev { left: -90px; }
-.proyectos-carousel .swiper-button-next { right: -90px; }
-
-/* Hide any inline SVG or stroked paths produced by libraries to keep only our filled chevrons */
+/* Hide any inline SVG or stroked paths produced by libraries */
 .proyectos-carousel .swiper-button-prev svg,
 .proyectos-carousel .swiper-button-next svg,
 .proyectos-carousel .swiper-button-prev path,
 .proyectos-carousel .swiper-button-next path {
   display: none !important;
-  stroke: none !important;
-  fill: none !important;
 }
 
 /* Ajuste del contenedor de cards para mostrar 3 centradas con espacios */
