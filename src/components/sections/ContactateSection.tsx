@@ -26,8 +26,8 @@ export default function ContactateSection() {
         </svg>
       </div>
       
-      <div className="w-full max-w-7xl flex md:flex-row items-start justify-center gap-8 px-6 md:px-0 z-10">
-        <div className="flex-1 flex flex-col justify-center">
+      <div className="w-full max-w-7xl flex flex-col lg:flex-row items-start justify-center gap-8 px-6 pt-10 lg:pt-0 z-10">
+        <div className="flex-1 flex flex-col justify-center lg:pl-5">
           <h4 className="text-xl">Tenés alguna idea que quieras hacer realidad?</h4>
           <h2 className="text-3xl sm:text-4xl md:text-8xl font-bold text-white z-10 drop-shadow-lg tracking-tight">
             Contáctanos
@@ -37,7 +37,7 @@ export default function ContactateSection() {
 
         <hr className="h-[-webkit-fill-available!important] w-[1px] bg-white"/>
         
-        <div className="flex-1 flex flex-col justify-center items-center">
+        <div className="flex-1 w-full flex flex-col justify-center items-center">
           <h4 className="text-5xl ">Trabajemos juntos</h4>
           <ContactFormSection />
         </div>
