@@ -181,8 +181,13 @@ export default function TeamMemberSection() {
   const topRowMembers = teamMembers.slice(0, 7);
   const bottomRowMembers = teamMembers.slice(7);
 
-  const circleSize = 280; // Tamaño del círculo en px
-  const circleRadius = circleSize / 2;
+  // Tamaños responsivos del círculo
+  const circleSize = {
+    mobile: 200,    // 320px - 639px
+    tablet: 240,    // 640px - 1023px  
+    desktop: 280    // 1024px+
+  };
+  const circleRadius = circleSize.desktop / 2;
 
   const handleMemberChange = (member: TeamMember) => {
     if (member.id !== selectedMember.id) {
@@ -190,7 +195,7 @@ export default function TeamMemberSection() {
       setTimeout(() => {
         setSelectedMember(member);
         setIsTransitioning(false);
-      }, 600); // Tiempo para que desaparezca la card
+      }, 500); // Tiempo optimizado para transición suave
     }
   };
 
@@ -200,37 +205,36 @@ export default function TeamMemberSection() {
       <div 
         className="absolute top-0 left-0 w-full pointer-events-none"
         style={{
-          height: '100px',
+          height: '140px',
           background: '#56743C',
           clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
           zIndex: 1
         }}
       />
-      {/* Título más arriba */}
-      <div className="w-full flex flex-col items-center" style={{ position: 'absolute', top: '30px', left: 0, zIndex: 10 }}>
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
+      {/* Título dentro del triángulo */}
+      <div className="w-full flex flex-col items-center" style={{ position: 'absolute', top: '40px', left: 0, zIndex: 10 }}>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white px-4">
           Nuestro equipo
         </h2>
       </div>
 
-      <div className="flex flex-col items-center w-full max-w-6xl mb-24 relative z-10" style={{marginTop: '80px'}}>
-        {/* Contenedor principal con círculo a la izquierda y tarjeta a la derecha */}
-        <div className="flex flex-col lg:flex-row items-center justify-center w-full mb-12">
-          {/* Wrapper para círculo y tarjeta unidos */}
-          <div className="flex items-center justify-center relative">
-            {/* Círculo con imagen a la izquierda */}
-            <div className="relative flex-shrink-0 z-10"
-              style={{
-                width: `${circleSize}px`,
-                height: `${circleSize}px`,
-              }}>
+      <div className="flex flex-col items-center w-full max-w-6xl mb-12 sm:mb-16 md:mb-20 lg:mb-24 relative z-10 px-4 sm:px-6 md:px-8" style={{marginTop: '120px'}}>
+        {/* Contenedor principal - Layout vertical en móvil, horizontal en desktop */}
+        <div className="flex flex-col items-center justify-center w-full mb-8 sm:mb-12">
+          {/* Wrapper para círculo y tarjeta */}
+          <div className="flex flex-col lg:flex-row items-center justify-center relative w-full max-w-4xl">
+            {/* Círculo con imagen */}
+            <div className="relative flex-shrink-0 z-10 w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] lg:w-[280px] lg:h-[280px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedMember.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  exit={{ opacity: 0, scale: 0.85 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
                   className="w-full h-full"
                 >
                   <div 
@@ -242,7 +246,7 @@ export default function TeamMemberSection() {
                       alt={selectedMember.name}
                       fill
                       className="object-cover"
-                      sizes={`${circleSize}px`}
+                      sizes="(max-width: 640px) 200px, (max-width: 768px) 220px, (max-width: 1024px) 240px, 280px"
                       priority
                     />
                   </div>
@@ -250,96 +254,134 @@ export default function TeamMemberSection() {
               </AnimatePresence>
             </div>
 
-            {/* Tarjeta de información a la derecha */}
+            {/* Tarjeta de información - Animación horizontal desde la izquierda */}
             <AnimatePresence mode="wait">
               {!isTransitioning && (
                 <motion.div
                   key={selectedMember.id + '-card'}
-                  initial={{ width: 0, opacity: 0, x: -30 }}
-                  animate={{ width: 'auto', opacity: 1, x: 0 }}
-                  exit={{ width: 0, opacity: 0, x: -30 }}
-                  transition={{ duration: 0.65, ease: "easeInOut" }}
-                  className="relative overflow-hidden"
+                  initial={{ 
+                    opacity: 0,
+                    scaleX: 0,
+                    x: 0
+                  }}
+                  animate={{ 
+                    opacity: 1,
+                    scaleX: 1,
+                    x: 0
+                  }}
+                  exit={{ 
+                    opacity: 0,
+                    scaleX: 0,
+                    x: 0
+                  }}
+                  transition={{ 
+                    duration: 0.65,
+                    ease: [0.4, 0, 0.2, 1],
+                    delay: 0.35,
+                    opacity: { duration: 0.65, delay: 0.35 },
+                    scaleX: { duration: 0.65, delay: 0.35 }
+                  }}
+                  className="relative w-full mt-6 lg:mt-0 lg:ml-[-140px] lg:w-auto origin-left"
                   style={{
-                    minHeight: `${circleSize}px`,
-                    marginLeft: `-${circleRadius}px`, // Solapamiento negativo para unir con el círculo
-                    zIndex: 0
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    transformOrigin: 'left center'
                   }}
                 >
-                <div
-                  className="h-full flex flex-col justify-center shadow-xl w-[80vw] md:w-[600px]"
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="h-full flex flex-col justify-center shadow-xl w-full rounded-[20px] lg:rounded-l-none lg:rounded-r-[20px] lg:min-h-[280px] lg:min-w-[480px]"
                   style={{
-                    background: '#0B4F50', // Color sólido similar a la imagen 1
-                    borderRadius: '0 20px 20px 0', // Bordes redondeados solo a la derecha
-                    minHeight: `${circleSize}px`,
-                    paddingLeft: `${circleRadius + 40}px`, // Padding izquierdo para compensar el círculo
-                    paddingRight: '40px',
-                    paddingTop: '32px',
-                    paddingBottom: '32px',
+                    background: '#0B4F50',
                   }}
                 >
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-1">
-                    {selectedMember.name}
-                  </h3>
-                  <p className="text-lg md:text-xl text-gray-200 font-normal mb-4">
-                    {selectedMember.role}
-                  </p>
-                  <p className="text-white text-base mb-6 leading-relaxed">
-                    {selectedMember.description}
-                  </p>
+                  <div className="px-6 py-6 lg:pl-[180px] lg:pr-10">  
+                    <motion.h3 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.75, duration: 0.3 }}
+                      className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 text-center lg:text-left"
+                    >
+                      {selectedMember.name}
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.85, duration: 0.3 }}
+                      className="text-base sm:text-lg lg:text-xl text-gray-200 font-normal mb-3 sm:mb-4 text-center lg:text-left"
+                    >
+                      {selectedMember.role}
+                    </motion.p>
+                    <motion.p 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.95, duration: 0.3 }}
+                      className="text-white text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed text-center lg:text-left"
+                    >
+                      {selectedMember.description}
+                    </motion.p>
                   
-                  {/* Enlaces sociales */}
-                  <div className="flex gap-4">
-                    {selectedMember.links.github && selectedMember.links.github !== '#' && (
-                      <a 
-                        href={selectedMember.links.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-white hover:text-gray-300 transition-colors"
-                      >
-                        <FaGithub size={28} />
-                      </a>
-                    )}
-                    {selectedMember.links.linkedin && selectedMember.links.linkedin !== '#' && (
-                      <a 
-                        href={selectedMember.links.linkedin} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-white hover:text-gray-300 transition-colors"
-                      >
-                        <FaLinkedin size={28} />
-                      </a>
-                    )}
-                    {selectedMember.links.portfolio && selectedMember.links.portfolio !== '#' && selectedMember.links.portfolio !== 'no tengo' && (
-                      <a 
-                        href={selectedMember.links.portfolio} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-white hover:text-gray-300 transition-colors"
-                      >
-                        <FaFolder size={28} />
-                      </a>
-                    )}
+                    {/* Enlaces sociales */}
+                    <motion.div 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.05, duration: 0.3 }}
+                      className="flex gap-4 justify-center lg:justify-start"
+                    >
+                      {selectedMember.links.github && selectedMember.links.github !== '#' && (
+                        <a 
+                          href={selectedMember.links.github} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-300 transition-colors"
+                        >
+                          <FaGithub className="w-6 h-6 sm:w-7 sm:h-7" />
+                        </a>
+                      )}
+                      {selectedMember.links.linkedin && selectedMember.links.linkedin !== '#' && (
+                        <a 
+                          href={selectedMember.links.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-300 transition-colors"
+                        >
+                          <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7" />
+                        </a>
+                      )}
+                      {selectedMember.links.portfolio && selectedMember.links.portfolio !== '#' && selectedMember.links.portfolio !== 'no tengo' && (
+                        <a 
+                          href={selectedMember.links.portfolio} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-white hover:text-gray-300 transition-colors"
+                        >
+                          <FaFolder className="w-6 h-6 sm:w-7 sm:h-7" />
+                        </a>
+                      )}
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
               )}
             </AnimatePresence>
           </div>
         </div>
 
-        {/* Grid de miembros en dos filas */}
-        <div className="flex flex-col gap-8 items-center w-full mt-8">
+        {/* Grid de miembros - Grid flexible que se envuelve en todas las pantallas */}
+        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 items-center w-full mt-6 sm:mt-8">
           {/* Fila superior */}
           <motion.div 
-            className="backdrop-blur-sm flex flex-wrap justify-center gap-9 rounded-[40px] py-6 shadow-xl w-full"
+            className="backdrop-blur-sm flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-9 rounded-[30px] md:rounded-[40px] py-4 sm:py-5 md:py-6 shadow-xl w-full"
             style={{ 
               background: 'linear-gradient(90deg, #04AEBF -100%, #025760 50%, #000000 100%)',
               WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 100%)',
               maskImage: 'linear-gradient(to right, transparent 0%, black 23%, black 100%)',
               width: '100%',
-              paddingLeft: 0,
-              paddingRight: 0
+              paddingLeft: '12px',
+              paddingRight: '12px'
             }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -350,7 +392,7 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`team-thumb relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`team-thumb relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] hover:border-[#86A869]/50 hover:scale-105'
@@ -363,7 +405,7 @@ export default function TeamMemberSection() {
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="112px"
+                  sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 112px"
                 />
               </motion.button>
             ))}
@@ -371,14 +413,14 @@ export default function TeamMemberSection() {
 
           {/* Fila inferior */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-8 rounded-[40px] py-6 shadow-md-xl w-full"
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 rounded-[30px] md:rounded-[40px] py-4 sm:py-5 md:py-6 shadow-md-xl w-full"
             style={{ 
               background: 'linear-gradient(90deg, #04AEBF -100%, #025760 00%, #000000 100%)',
               WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 20%, black 100%)',
               maskImage: 'linear-gradient(to left, transparent 0%, black 23%, black 100%)',
               width: '100%',
-              paddingLeft: 0,
-              paddingRight: 0
+              paddingLeft: '12px',
+              paddingRight: '12px'
             }}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -389,7 +431,7 @@ export default function TeamMemberSection() {
                 key={member.id}
                 onClick={() => handleMemberChange(member)}
                 style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
-                className={`team-thumb relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
+                className={`team-thumb relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 transition-all duration-300 isolate ${
                   selectedMember.id === member.id 
                     ? 'border-[#86A869] scale-110 shadow-lg shadow-[#86A869]/50' 
                     : 'border-[#025159] hover:border-[#86A869]/50 hover:scale-105'
@@ -402,7 +444,7 @@ export default function TeamMemberSection() {
                   alt={member.name}
                   fill
                   className="object-cover"
-                  sizes="112px"
+                  sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 112px"
                 />
               </motion.button>
             ))}
