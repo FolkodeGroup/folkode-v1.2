@@ -4,12 +4,10 @@ import Tecnologias from "@/components/Tecnologias";
 //import QueHacemosSection from "@/components/QueHacemosSection";
 import ProyClientes from "@/components/ProyectoClientes";
 import IconosTecnologias from "@/components/IconosTecnologias";
-import Unirte from "@/components/Unirte";
 import TeamMemberSection from "@/components/TeamMemberSection";
 import FactoryCard from "@/components/FactoryCard";
 import ContactateSection from "@/components/sections/ContactateSection";
 import ClientComent from "@/components/ClientComent";
-import ComentariosEquipo from "@/components/ComentariosEquipo";
 import Reveal from "@/components/Reveal";
 import ServiciosSection from "@/components/sections/ServiciosSection";
 
@@ -31,10 +29,6 @@ export default function Home() {
         <section id="que-ofrecemos">
           <Reveal><FactoryCard /></Reveal>
         </section>
-        <section id="unirte">
-          <Reveal><Unirte /></Reveal>
-        </section>
-        <Reveal><ComentariosEquipo/></Reveal>
         <section id="tecnologias" className="mt-16">
           <Reveal><Tecnologias /></Reveal>
         </section>
