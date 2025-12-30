@@ -57,6 +57,16 @@ const services = [
       'Plataformas educativas y de gestión comunitaria.',
     ],
   },
+  {
+    id: 'apis',
+    mode: 'light',
+    iconClass: 'bi bi-diagram-3',
+    title: 'Integraciones y APIs',
+    items: [
+      'Conexión entre sistemas y plataformas.',
+      'Automatización de flujos de datos.',
+    ],
+  },
 ]
 
 const Servicios: FC = () => {
@@ -83,31 +93,16 @@ const Servicios: FC = () => {
         {/* Grid */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10 place-items-center">
 
-            {/* ------- Fila 1 (3 cards) ------- */}
-            {services.slice(0, 3).map((service, index) => (
-                <Card
-                key={index}
-                title={service.title}
-                items={service.items}
-                icon={<Cpu className="w-12 h-12 text-[#86A869]"/>}
-                />
-            ))}
+          {services.map((service, index) => (
+            <Card
+              key={index}
+              title={service.title}
+              items={service.items}
+              icon={<Cpu className="w-12 h-12 text-[#86A869]" />}
+            />
+          ))}
 
-            {/* ------- Fila 2 (2 cards centradas) ------- */}
-            {/* En mobile: ocupan 1 columna cada una → stacking normal */}
-            {/* En desktop: ocupan 3 columnas, pero dentro hay un flex centrado → se centran las dos cards */}
-            <div className="md:col-span-3 flex flex-col md:flex-row justify-center items-center gap-10 w-full">
-                {services.slice(3, 5).map((service, i) => (
-                <Card
-                    key={i + 3}
-                    title={service.title}
-                    items={service.items}
-                    icon={<Cpu className="w-12 h-12 text-[#86A869]" />}
-                />
-                ))}
-            </div>
-
-            </div>
+        </div>
 
       </div>
     </section>

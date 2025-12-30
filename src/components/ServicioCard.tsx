@@ -23,13 +23,13 @@ const Card: FC<CardProps> = ({ title, items, icon, delay = 0 }) => {
       }}
       viewport={{ once: true }}
       className="
-        w-full min-h-[380px] max-w-[360px]
+        w-full min-h-[100%] max-w-[360px]
         bg-[conic-gradient(from_180deg_at_100%_100%,#01454F,#56743C)]
         bg-[bottom_right]
         backdrop-blur-md border border-white/10
         rounded-xl p-8 py-10 shadow-xl hover:scale-[1.02]
         transition-transform duration-300"
-        >
+    >
       {/* Ícono */}
       <div className="flex justify-center mb-5">
         {icon}
