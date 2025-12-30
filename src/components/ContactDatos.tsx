@@ -16,9 +16,9 @@ export default function ContactDatos() {
               className="flex w-full align-center items-center justify-center truncate font-medium hover:underline"
             >
               contactofolkode@gmail.com
-              <ChevronRight className='ml-auto'/>
+              <ChevronRight className='ml-auto' />
             </a>
-            
+
           </div>
           <div className="flex w-full items-center gap-3 text-xs md:text-sm lg:text-base bg-[#025159] px-6 py-4 rounded-xl">
             <FaWhatsapp title="Whatsapp" className="text-lg md:text-xl lg:text-2xl text-white" />
@@ -29,12 +29,12 @@ export default function ContactDatos() {
               className="flex w-full align-center items-center truncate font-medium hover:underline"
             >
               WhatsApp
-              <ChevronRight className='ml-auto'/>
+              <ChevronRight className='ml-auto' />
             </a>
-            
+
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            
+
             <a
               href="https://www.facebook.com/folkode"
               target="_blank"
@@ -45,7 +45,7 @@ export default function ContactDatos() {
             </a>
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            
+
             <a
               href="https://www.instagram.com/fol.kode"
               target="_blank"
@@ -56,7 +56,7 @@ export default function ContactDatos() {
             </a>
           </div>
           <div className="flex items-center gap-3 text-xs md:text-sm lg:text-base">
-            
+
             <a
               href="https://www.linkedin.com/in/folkode"
               target="_blank"

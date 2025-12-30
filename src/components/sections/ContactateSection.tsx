@@ -17,7 +17,7 @@ export default function ContactateSection() {
       {/* Partículas decorativas */}
       <div className="absolute inset-0 pointer-events-none z-0">
         {/* Puedes reemplazar esto por una librería de partículas si lo deseas */}
-        <svg width="100%" height="100%" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position: 'absolute', left:0, top:0}}>
+        <svg width="100%" height="100%" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', left: 0, top: 0 }}>
           <circle cx="200" cy="100" r="3" fill="#00FFD0" opacity="0.3" />
           <circle cx="400" cy="300" r="2" fill="#FFF200" opacity="0.2" />
           <circle cx="1200" cy="500" r="4" fill="#00FFD0" opacity="0.2" />
@@ -25,18 +25,18 @@ export default function ContactateSection() {
           {/* ...más círculos decorativos... */}
         </svg>
       </div>
-      
+
       <div className="w-full max-w-7xl flex flex-col lg:flex-row items-start justify-center gap-8 px-6 pt-10 lg:pt-0 z-10">
-        <div className="flex-1 flex flex-col justify-center lg:pl-5">
+        <div className="flex-1 flex flex-col self-center lg:self-auto justify-center lg:pl-5">
           <h4 className="text-xl">Tenés alguna idea que quieras hacer realidad?</h4>
-          <h2 className="text-3xl sm:text-4xl md:text-8xl font-bold text-white z-10 drop-shadow-lg tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold text-white z-10 drop-shadow-lg tracking-tight">
             Contáctanos
           </h2>
           <ContactDatos />
         </div>
 
-        <hr className="h-[-webkit-fill-available!important] w-[1px] bg-white"/>
-        
+        <hr className="h-[-webkit-fill-available!important] w-[1px] bg-white" />
+
         <div className="flex-1 w-full flex flex-col justify-center items-center">
           <h4 className="text-5xl ">Trabajemos juntos</h4>
           <ContactFormSection />

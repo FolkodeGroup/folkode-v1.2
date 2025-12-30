@@ -30,7 +30,7 @@ const ContactFormSection = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof contactSchema>) => {
-    
+
     // Crear FormData para envío a Formspree
     const formData = new FormData();
     formData.append('name', data.name);
@@ -38,7 +38,7 @@ const ContactFormSection = () => {
     formData.append('message', data.message);
     if (data.phone) formData.append('phone', data.phone);
     if (data.project) formData.append('project', data.project);
-    
+
     try {
       // Enviar a Formspree - no necesitamos verificar la respuesta por CORS
       await fetch("https://formspree.io/f/mqalrodd", {
@@ -55,7 +55,7 @@ const ContactFormSection = () => {
         icon: "success"
       });
       reset();
-  } catch {
+    } catch {
       // no se porque tira error cors, pero con esto se envia igual
       Swal.fire({
         title: "¡Mensaje enviado!",
@@ -67,7 +67,7 @@ const ContactFormSection = () => {
   };
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-md rounded-xl py-8 flex flex-col justify-center h-full"
       autoComplete="off"
@@ -107,7 +107,7 @@ const ContactFormSection = () => {
           </div>
           {/* Email */}
           <div className="space-y-1 relative">
-            
+
             <Input
               id="email"
               type="email"
@@ -139,7 +139,7 @@ const ContactFormSection = () => {
         <div className="space-y-5">
           {/* Teléfono */}
           <div className="space-y-1 relative">
-            
+
             <Input
               id="phone"
               {...register("phone")}
@@ -168,7 +168,7 @@ const ContactFormSection = () => {
           </div>
           {/* Empresa/Proyecto */}
           <div className="space-y-1 relative">
-            
+
             <Input
               id="project"
               {...register("project")}
@@ -187,7 +187,7 @@ const ContactFormSection = () => {
               peer-[&:not(:placeholder-shown)]:top-2
               peer-[&:not(:placeholder-shown)]:text-xs
               peer-[&:not(:placeholder-shown)]:text-white">
-              Nombre de empresa/proyecto
+              Nombre de empresa
             </label>
             <div className="min-h-[20px]">
               {errors.project && (
