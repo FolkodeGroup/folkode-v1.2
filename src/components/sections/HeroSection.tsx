@@ -37,7 +37,6 @@ export default function HeroSection() {
     <section
       id="inicio"
       className="relative w-full flex items-center justify-center hero-section min-h-[300px] !pb-0"
-      style={{ marginTop: navHeight }}
       ref={ref}
     >
 
@@ -74,6 +73,10 @@ export default function HeroSection() {
             text-center
             gap-6
             w-full
+            max-w-full
+            sm:max-w-[90%]
+            md:max-w-[720px]
+            lg:max-w-[850px]
           "
           style={{
             boxShadow: '0 0 40px rgba(0,0,0,0.35)',

@@ -2320,12 +2320,17 @@ picture {
 
 /* Estilos para la sección de proyectos */
 .proyectos-seccion {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #01454F 0%, #025159 60%, #86A869 100%);
-  border-radius: 16px;
-  margin: 2rem auto;
-  max-width: 1400px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  /* Sin fondo para la vista de proyectosclientes */
+  background-image: none;
+  background: transparent;
+
+  box-shadow: none;
+  position: relative;
+}
+
+/* Overlay oscuro para mejorar contraste sobre la imagen */
+.proyectos-seccion::before {
+  display: none !important;
 }
 
 .proyectos-cabecera {
@@ -2354,15 +2359,21 @@ picture {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 1rem;
-  background-color: rgba(1, 69, 79, 0.4);
+  background-color: transparent; /* quitar fondo verde-agua oscuro */
   border-radius: 12px;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
   align-items: stretch;
 }
 
+/* Asegurar que el contenido esté encima del overlay */
+.proyectos-seccion > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Tarjeta de Proyecto */
 .proyecto-card {
-  background: #161b22;
+  background: transparent;
   border-radius: 16px;
   overflow: hidden;
   display: flex;
@@ -2390,9 +2401,9 @@ picture {
 }
 
 .proyecto-img-wrapper {
-  height: 200px;
+  height: 300px;
   width: 100%;
- 
+  position: relative;
   overflow: hidden;
 }
 
@@ -2400,11 +2411,14 @@ picture {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.28s ease;
+  position: relative;
+  z-index: 1; /* imagen por debajo de overlays */
 }
 
+/* Hover: hacer zoom-out para revelar overlay teal */
 .proyecto-card:hover .proyecto-img {
-  transform: scale(1.05);
+  transform: scale(0.96) !important;
 }
 
 .proyecto-etiqueta {
@@ -2417,28 +2431,31 @@ picture {
   border-radius: 8px;
   font-size: 0.8rem;
   font-weight: 600;
-  z-index: 2;
+  z-index: 5;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .proyecto-info {
-  padding: 1.5rem;
+  padding: 1rem 1.25rem 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  background-color: #161b22;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, rgba(10,18,22,0.9), rgba(10,18,22,0.85));
+  margin-top: 0; /* asegurar que el contenido esté debajo de la imagen */
+  position: relative;
+  z-index: 4;
 }
 
 .proyecto-titulo {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.75rem;
 }
 
 .proyecto-desc {
-  color: #e6edf3;
+  color: rgba(230,237,243,0.95);
   margin-bottom: 1.5rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -2510,12 +2527,13 @@ picture {
 .swiper {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .swiper-slide {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: space-around;
 }
 
 .swiper-pagination {
@@ -2576,6 +2594,210 @@ picture {
 .proyecto-img-wrapper {
   position: relative;
   overflow: hidden;
+}
+
+/* Teal overlay debajo de la imagen, aparece en hover */
+.proyecto-img-wrapper::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(6,77,81,0.0) 0%, rgba(6,77,81,0.35) 50%, rgba(6,77,81,0.6) 100%);
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Asegurarnos que la imagen esté por encima del overlay */
+.proyecto-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Zoom-out on hover: image scales down slightly and teal overlay becomes visible */
+.proyecto-card:hover .proyecto-img {
+  transform: scale(0.96) !important;
+}
+.proyecto-card:hover .proyecto-img-wrapper::before{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Centro más grande: cuando mostramos 3 elementos, el central se escala */
+.proyectos-contenedor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.proyectos-contenedor .proyecto-card {
+  transform: scale(0.95);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  z-index: 1;
+}
+.proyectos-contenedor .proyecto-card:nth-child(2) {
+  transform: scale(1.06);
+  z-index: 3;
+}
+
+/* Swiper specific: scale center slide */
+.proyectos-carousel { position: relative; overflow: visible; }
+
+/* allow nav buttons to sit outside the swiper viewport */
+.proyectos-carousel .swiper-wrapper { overflow: visible !important; }
+.proyectos-carousel .swiper-slide { overflow: visible !important; }
+
+.proyectos-carousel .swiper-slide .proyecto-card { transform: scale(0.95) !important; }
+.proyectos-carousel .swiper-slide-active .proyecto-card { transform: scale(1.06) !important; z-index: 30 !important; }
+.proyectos-carousel .swiper-slide-prev .proyecto-card,
+.proyectos-carousel .swiper-slide-next .proyecto-card { transform: scale(0.98) !important; z-index: 20 !important; }
+
+/* Make cards narrower inside the carousel so arrows sit clearly outside */
+.proyectos-carousel .swiper-slide { display: flex; justify-content: center; }
+.proyectos-carousel .swiper-slide .proyecto-card { max-width: 340px; width: 100%; margin: 0 auto; }
+
+/* Custom navigation buttons styling (smaller, circular) */
+.proyectos-carousel .swiper-button-next,
+.proyectos-carousel .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  background: rgba(14, 107, 107, 0.8);
+  border: 2px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(2,81,89,0.3);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 100 !important;
+  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Separación de las flechas respecto a las cards */
+.proyectos-carousel .swiper-button-prev {
+  left: 10px !important;
+}
+
+.proyectos-carousel .swiper-button-next {
+  right: 10px !important;
+}
+
+.proyectos-carousel .swiper-button-next:hover,
+.proyectos-carousel .swiper-button-prev:hover {
+  background: rgba(14, 107, 107, 1);
+  box-shadow: 0 12px 30px rgba(2,81,89,0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.proyectos-carousel .swiper-button-next::after,
+.proyectos-carousel .swiper-button-prev::after {
+  display: none;
+}
+
+/* Insertar SVGs inline como pseudo-elementos para chevrons */
+.proyectos-carousel .swiper-button-next::before,
+.proyectos-carousel .swiper-button-prev::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.28));
+}
+
+.proyectos-carousel .swiper-button-next::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='6,4 18,12 6,20' fill='%23ffffff'/></svg>");
+}
+
+.proyectos-carousel .swiper-button-prev::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><polygon points='6,4 18,12 6,20' fill='%23ffffff'/></svg>");
+  transform: rotate(180deg);
+}
+
+/* Hide any inline SVG or stroked paths produced by libraries */
+.proyectos-carousel .swiper-button-prev svg,
+.proyectos-carousel .swiper-button-next svg,
+.proyectos-carousel .swiper-button-prev path,
+.proyectos-carousel .swiper-button-next path {
+  display: none !important;
+}
+
+/* Ajuste del contenedor de cards para mostrar 3 centradas con espacios */
+.proyectos-contenedor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .proyectos-contenedor {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .proyectos-contenedor {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajustes estéticos adicionales para que la card tenga un borde sutil y profundidad */
+.proyecto-card {
+  border: 1px solid rgba(255,255,255,0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none; /* cartes planas sin sombras borrosas */
+}
+
+/* Banda teal degradada en la parte inferior de la imagen (simula overlay visto en el mock) */
+.proyecto-img-wrapper::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 25%;
+  /* reducir intensidad del degradado teal */
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(6,77,81,0.28) 20%, rgba(6,77,81,0.44) 100%);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1; /* banda oscura/blur bajo el overlay */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+
+/* Botón dentro de la card: píldora blanca como en la imagen */
+.proyecto-card .proyecto-btn {
+  background: #ffffff !important;
+  color: #0a2342 !important;
+  padding: 10px 28px !important;
+  border-radius: 999px !important;
+  box-shadow: 0 8px 24px rgba(2,81,89,0.12) !important;
+  min-width: 160px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600 !important;
+}
+
+/* Ocultar cabecera centrada en desktop (usamos sidebar) */
+@media (min-width: 769px) {
+  .proyectos-cabecera { display: none; }
 }
 /* ===========================
    ABOUT - sobre nosotros
@@ -2690,7 +2912,7 @@ picture {
 
 
 .aboutBottomFull{
-  background: #56743C; 
+  background: #56743C;
   padding: 4.6rem 4vw 2.4rem;
   clip-path: polygon(0 34%, 50% 0, 100% 34%, 100% 101%, 0 101%);
 }

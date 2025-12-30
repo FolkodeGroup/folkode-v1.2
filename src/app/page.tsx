@@ -2,7 +2,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import Tecnologias from "@/components/Tecnologias";
 //import QueHacemosSection from "@/components/QueHacemosSection";
-import ProyClientes from "@/components/ProyectoClientes";
+import ProyClientes from "@/components/proyectos";
 import IconosTecnologias from "@/components/IconosTecnologias";
 import TeamMemberSection from "@/components/TeamMemberSection";
 import FactoryCard from "@/components/FactoryCard";
