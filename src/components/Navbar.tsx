@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <nav className="navbar sticky top-0 left-0 w-full z-50 fade-in"
+    <nav className="navbar sticky top-[-1px] left-0 w-full z-50 fade-in"
       style={{
         background: 'linear-gradient(90deg, rgba(1,69,79,0.92) 0%, rgba(2,81,89,0.92) 100%)',
         backdropFilter: 'blur(8px)',
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
       {/* Contenedor principal */}
       <div className="navbar-main">
         {/* Sección superior (negra + verde) */}
-        <div className="navbar-top">
+        <div className="navbar-top overflow-hidden">
           {/* Sección izquierda negra con forma diagonal */}
           <div className="navbar-left">
             <div className="navbar-left-diagonal">
@@ -88,38 +88,38 @@ const Navbar: React.FC = () => {
                   return (
                     <div className='nav-item-container' key={item.id}>
                       <button
-                          onClick={handleScrollToTop}
-                          className="text-nav-link cursor-pointer bg-transparent border-none"
-                          style={{
-                            color: 'var(--color-text-inverse)',
-                            transition: 'color 0.2s ease, background .5s ease'
-                          }}
-                        >
-                          <span>{item.label}</span>
-                        </button>
+                        onClick={handleScrollToTop}
+                        className="text-nav-link cursor-pointer bg-transparent border-none"
+                        style={{
+                          color: 'var(--color-text-inverse)',
+                          transition: 'color 0.2s ease, background .5s ease'
+                        }}
+                      >
+                        <span>{item.label}</span>
+                      </button>
                     </div>
                   );
                 } else {
                   return (
                     <div className='nav-item-container' key={item.id}>
                       <ScrollLink
-                          to={item.target || ''}
-                          spy={true}
-                          smooth={true}
-                          offset={-getScrollOffset()}
-                          duration={800}
-                          activeClass="active"
-                          className="text-nav-link cursor-pointer"
-                          style={{
-                            color: 'var(--color-text-inverse)',
-                            transition: 'color 0.2s ease, background .5s ease',
-                            textDecoration: 'none'
-                          }}
-                        >
-                          <span>
-                            {item.label}
-                          </span>
-                        </ScrollLink>
+                        to={item.target || ''}
+                        spy={true}
+                        smooth={true}
+                        offset={-getScrollOffset()}
+                        duration={800}
+                        activeClass="active"
+                        className="text-nav-link cursor-pointer"
+                        style={{
+                          color: 'var(--color-text-inverse)',
+                          transition: 'color 0.2s ease, background .5s ease',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        <span>
+                          {item.label}
+                        </span>
+                      </ScrollLink>
                     </div>
                   );
                 }
@@ -218,7 +218,7 @@ const Navbar: React.FC = () => {
               onMouseEnter={e => e.currentTarget.style.background = 'rgba(30, 111, 163, 0.4)'}
               onMouseLeave={e => e.currentTarget.style.background = 'rgba(30, 111, 163, 0.2)'}
             >
-              <span style={{fontSize: 32, lineHeight: 1, fontWeight: 700}}>&times;</span>
+              <span style={{ fontSize: 32, lineHeight: 1, fontWeight: 700 }}>&times;</span>
             </button>
             <div style={{
               width: '100%',
@@ -266,7 +266,7 @@ const Navbar: React.FC = () => {
                   );
                 } else {
                   return (
-                    <div key={item.id} style={{ width: '100%', display: "flex", justifyContent: "center"}}>
+                    <div key={item.id} style={{ width: '100%', display: "flex", justifyContent: "center" }}>
                       <ScrollLink
                         to={item.target || ''}
                         spy={true}
