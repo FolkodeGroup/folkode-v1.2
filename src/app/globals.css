@@ -2320,13 +2320,10 @@ picture {
 
 /* Estilos para la sección de proyectos */
 .proyectos-seccion {
-  padding: 4rem 2rem;
   /* Sin fondo para la vista de proyectosclientes */
   background-image: none;
   background: transparent;
-  border-radius: 16px;
-  margin: 2rem auto;
-  max-width: 1400px;
+
   box-shadow: none;
   position: relative;
 }
@@ -2688,11 +2685,11 @@ picture {
 
 /* Separación de las flechas respecto a las cards */
 .proyectos-carousel .swiper-button-prev {
-  left: -10px !important;
+  left: 10px !important;
 }
 
 .proyectos-carousel .swiper-button-next {
-  right: -10px !important;
+  right: 10px !important;
 }
 
 .proyectos-carousel .swiper-button-next:hover,
@@ -2702,7 +2699,7 @@ picture {
   transform: translateY(-50%) scale(1.1);
 }
 
-.proyectos-carousel .swiper-button-next::after, 
+.proyectos-carousel .swiper-button-next::after,
 .proyectos-carousel .swiper-button-prev::after {
   display: none;
 }
