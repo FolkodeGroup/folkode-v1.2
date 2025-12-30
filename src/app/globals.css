@@ -1280,8 +1280,8 @@ picture {
     object-fit: contain;
     margin-bottom: 8px;
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 95px;
+    height: 95px;
     transition: width 0.3s, height 0.3s;
   }
 
@@ -2017,9 +2017,9 @@ picture {
   .navbar-right {
     flex: 1;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
-    padding-left: 20px;
+    padding-right: 20px;
     background-color: var(--color-secondary-hover);
   }
 
